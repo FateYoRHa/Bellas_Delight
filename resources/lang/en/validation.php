@@ -139,8 +139,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'firstName' => [
+            'regex' => 'First name must ONLY contain letters',
+        ],
+        'lastName' => [
+            'regex' => 'Last name must ONLY contain letters',
         ],
     ],
 
