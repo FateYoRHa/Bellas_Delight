@@ -16,7 +16,7 @@
                             wire:model="photo"
                             x-ref="photo"
                             x-on:change="
-                                    photoName = $refs.photo.files[0].name;
+                                    photoName = $refs.photo.files[0].firstName;
                                     const reader = new FileReader();
                                     reader.onload = (e) => {
                                         photoPreview = e.target.result;
@@ -28,7 +28,7 @@
 
                 <!-- Current Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
-                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
+                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->firstName }}" class="rounded-full h-20 w-20 object-cover">
                 </div>
 
                 <!-- New Profile Photo Preview -->
@@ -68,14 +68,14 @@
 
         <!-- Address -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="address" value="{{ __('Last Name') }}" />
+            <x-jet-label for="address" value="{{ __('Address') }}" />
             <x-jet-input id="address" type="text" class="mt-1 block w-full" wire:model.defer="state.address" autocomplete="address" />
             <x-jet-input-error for="address" class="mt-2" />
         </div>
 
         <!-- Contact Number -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="contactNumber" value="{{ __('Last Name') }}" />
+            <x-jet-label for="contactNumber" value="{{ __('Contact Number') }}" />
             <x-jet-input id="contactNumber" type="text" class="mt-1 block w-full" wire:model.defer="state.contactNumber" autocomplete="contactNumber" />
             <x-jet-input-error for="contactNumber" class="mt-2" />
         </div>

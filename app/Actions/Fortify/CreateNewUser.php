@@ -18,13 +18,13 @@ class CreateNewUser implements CreatesNewUsers
      * @param  array  $input
      * @return \App\Models\User
      */
-    
+
     public function create(array $input)
     {
         Validator::make($input, [
             'firstName' => ['required', 'regex:/^[a-zA-Z]+$/u', 'max:255'],
             'lastName' => ['required', 'regex:/^[a-zA-Z]+$/u', 'max:255'],
-            'contactNumber' => ['required', 'regex:/[01][0-9]{9}/', 'min:11', 'max:12'],
+            'contactNumber' => ['required', 'regex:/[01][0-9]{9}/', 'min:10', 'max:12'],
             'address' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
