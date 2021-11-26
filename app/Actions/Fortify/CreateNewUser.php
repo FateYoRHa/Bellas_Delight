@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
-use Illuminate\Support\Facades\DB;
 use Laravel\Jetstream\Jetstream;
 
 class CreateNewUser implements CreatesNewUsers
@@ -32,36 +31,6 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
         ])->validate();
-<<<<<<< Updated upstream
-
-        return DB::transaction(function () use ($input) {
-            return tap(User::create([
-                'firstName' => $input['firstName'],
-                'lastName' => $input['lastName'],
-                'contactNumber' => $input['contactNumber'],
-                'address' => $input['address'],
-                'email' => $input['email'],
-                'password' => Hash::make($input['password']),
-            ]), function (User $user) {
-                $this->createTeam($user);
-            });
-        });
-    }
-
-    /**
-     * Create a personal team for the user.
-     *
-     * @param  \App\Models\User  $user
-     * @return void
-     */
-    protected function createTeam(User $user)
-    {
-        $user->ownedTeams()->save(Team::forceCreate([
-            'user_id' => $user->id,
-            'name' => explode(' ', $user->firstName, 2)[0]."'s Team",
-            'personal_team' => true,
-        ]));
-=======
         // return DB::transaction(function () use ($input) {
         //     return tap(User::create([
         //         'firstName' => $input['firstName'],
@@ -85,6 +54,5 @@ class CreateNewUser implements CreatesNewUsers
         ]);
         $user->attachRole('3');
         return $user;
->>>>>>> Stashed changes
     }
 }

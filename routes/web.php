@@ -17,12 +17,35 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
+
+Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')
+    ->name('dashboard');
 
 //roles and permission
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
-    Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')
-    ->name('dashboard');
+
+    //ADMIN ROUTES
+    Route::group(['middleware' => ['auth', 'role:administrator']], function(){
+        Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')
+        ->name('dashboard');
+    });
+
+    //EMPLOYEE ROUTES
+    Route::group(['middleware' => ['auth', 'role:employee']], function(){
+        Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')
+        ->name('dashboard');
+    });
+
+    //CUSTOMER ROUTES
+    Route::group(['middleware' => ['auth', 'role:customer']], function(){
+        Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')
+        ->name('dashboard');
+    });
+
+
 });
+
+
