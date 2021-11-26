@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
+use Illuminate\Support\Facades\DB;
 use Laravel\Jetstream\Jetstream;
 
 class CreateNewUser implements CreatesNewUsers
@@ -31,6 +32,7 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
         ])->validate();
+<<<<<<< Updated upstream
 
         return DB::transaction(function () use ($input) {
             return tap(User::create([
@@ -59,5 +61,30 @@ class CreateNewUser implements CreatesNewUsers
             'name' => explode(' ', $user->firstName, 2)[0]."'s Team",
             'personal_team' => true,
         ]));
+=======
+        // return DB::transaction(function () use ($input) {
+        //     return tap(User::create([
+        //         'firstName' => $input['firstName'],
+        //         'lastName' => $input['lastName'],
+        //         'contactNumber' => $input['contactNumber'],
+        //         'address' => $input['address'],
+        //         'email' => $input['email'],
+        //         'password' => Hash::make($input['password']),
+        //     ]), function (User $user){
+        //         $user->attachRole('3');
+        //         return $user;
+        //     });
+        // });
+        $user = User::create([
+            'firstName' => $input['firstName'],
+            'lastName' => $input['lastName'],
+            'contactNumber' => $input['contactNumber'],
+            'address' => $input['address'],
+            'email' => $input['email'],
+            'password' => Hash::make($input['password']),
+        ]);
+        $user->attachRole('3');
+        return $user;
+>>>>>>> Stashed changes
     }
 }

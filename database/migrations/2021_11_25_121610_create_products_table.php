@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->String('productName');
             $table->String('productDesc');
             $table->integer('quantity');
+            $table->integer('rating');
             $table->Double('productPrice');
             $table->timestamps();
         });
