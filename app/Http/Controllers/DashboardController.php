@@ -16,10 +16,7 @@ class DashboardController extends Controller
         }elseif(Auth::user()->hasRole('employee')){
             return view('');
         }elseif(Auth::user()->hasRole('customer')){
-            return view('customer.menu.dashboard');
-        }else{
-            Auth::user()->attachRole('4');
-            return view('dashboard');
+            return view('customer.menu.menu');
         }
 
     }

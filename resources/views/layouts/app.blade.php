@@ -12,11 +12,17 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
-        @livewireStyles
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/cnp.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/sweetalert.css">
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+        <script src="js/bootstrap.bundle.js" defer></script>
+        <script src="js/bootstrap.js" defer></script>
+        <script src="js/jquery-3.6.0.js" defer></script>
+        <script src="js/sweetalert.min.js" defer></script>
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
