@@ -20,11 +20,12 @@ class CreateUsersTable extends Migration
             $table->string('profile_photo_path')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('user_type')->default('Customer');
+            $table->string('user_type')->default('customer');
             $table->string('password');
             $table->bigInteger('contactNumber');
             $table->string('address');
             $table->rememberToken();
+            $table->foreignId('current_team_id')->nullable();
             $table->timestamps();
         });
     }
