@@ -21,7 +21,7 @@
                                 {{ __('Reports') }}
                             </x-jet-nav-link>
 
-                            <x-jet-nav-link href="{{ route('products') }}" :active="request()->routeIs('products')">
+                            <x-jet-nav-link href="{{route('products.index')}}" :active="request()->routeIs('products')">
                                 {{ __('Products') }}
                             </x-jet-nav-link>
 
@@ -218,7 +218,7 @@
                         {{ __('Reports') }}
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ route('products') }}" :active="request()->routeIs('products')">
+                    <x-jet-nav-link href="{{route('products.index')}}">Products</a>" :active="request()->routeIs('products')">
                         {{ __('Products') }}
                     </x-jet-nav-link>
 

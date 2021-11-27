@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,32 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // MENU CONTROLLER
+    public function listAllProducts()
+    {
+        # code...
+    }
+
+
+
     public function index()
     {
         //
+        $categories = array(
+            '',
+            'Bread',
+            'Cookie',
+            'Dessert',
+            'Muffin',
+            'Pizza',
+            'Snack Cakes',
+            'Sweet Goods',
+            'Tortilla'
+        );
+        $products = DB::table('products')->paginate(8);
+        return view('admin.products.products', compact('products'))->with('categories', $categories);
+        //return view('folder.filename', compact('variable to pass'));
+
     }
 
     /**
@@ -25,6 +49,7 @@ class ProductController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -36,6 +61,11 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
+        Product::updateorCreate(
+            ['id'=>$request->id], $request->all()
+        );
+
+        return redirect()->route('products.index')->with('message', 'Action was Successful');
     }
 
     /**
@@ -55,9 +85,11 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
         //
+        $listings = Product::find($id);
+        return response()->json($listings);
     }
 
     /**
@@ -67,10 +99,10 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
-    {
-        //
-    }
+    // public function update(Request $request, Product $product)
+    // {
+    //     //
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -78,8 +110,13 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
         //
+        $listings = Product::find($id);
+        $listings->delete();
     }
+
+
+
 }

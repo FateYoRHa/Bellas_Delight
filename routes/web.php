@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,9 +35,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
         Route::get('/admin/dashboard', function(){
             return view('/admin/dashboard');
         })->name('reports');
-        Route::get('/admin/products/products', function(){
-            return view('/admin/products/products');
-        })->name('products');
+        // Route::get('/admin/products/products', function(){
+        //     return view('/admin/products/products');
+        // })->name('products');
+        Route::resource('products', ProductController::class);
         Route::get('/admin/products/orders', function(){
             return view('/admin/products/orders');
         })->name('orders');

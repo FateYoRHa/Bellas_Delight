@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->String('productName');
             $table->String('productDesc');
             $table->integer('quantity');
-            $table->integer('rating');
+            $table->integer('rating')->nullable();
             $table->Double('productPrice');
             $table->timestamps();
         });
