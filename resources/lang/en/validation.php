@@ -145,6 +145,9 @@ return [
         'lastName' => [
             'regex' => 'Last name must ONLY contain letters',
         ],
+        'password' => [
+            'regex' => 'Password must contain atleast 1 upper and lower case, number, and special characters.',
+        ],
     ],
 
     /*

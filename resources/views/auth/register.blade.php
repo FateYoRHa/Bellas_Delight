@@ -12,8 +12,7 @@
                 <x-jet-input id="firstName" class="block mt-1 w-full @error('firstName') border-red-500 @enderror"
                     type="text" name="firstName" :value="old('firstName')" autofocus
                     autocomplete="firstName" />
-                {{-- @error('firstName') <p class="error text-red-500 text-xs italic mt-4">{{ $message }}</p> @enderror --}}
-                <x-jet-validation-errors ('firstName') />
+                @error('firstName') <p class="error text-red-500 text-xs italic mt-4">{{ $message }}</p> @enderror
 
             </div>
             {{-- Last Name --}}
@@ -27,7 +26,7 @@
             {{-- EMAIL --}}
             <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full @error('email') border-red-500 @enderror" type="email"
+                <x-jet-input id="email" class="block mt-1 w-full @error('email') is-invalid @enderror" type="email"
                     name="email" :value="old('email')" />
                 @error('email') <p class="error text-red-500 text-xs italic mt-4">{{ $message }}</p> @enderror
             </div>
@@ -41,21 +40,20 @@
             {{-- Contact Number --}}
             <div>
                 <x-jet-label for="contactNumber" value="{{ __('Contact Number') }}" />
-                <x-jet-input id="contactNumber"
-                    class="block mt-1 w-full @error('contactNumber') border-red-500 @enderror" type="text"
-                    name="contactNumber" :value="old('contactNumber')" autofocus
-                    autocomplete="contactNumber" />
+                <x-jet-input id="contactNumber" class="block mt-1 w-full @error('contactNumber') border-red-500 @enderror" type="text" name="contactNumber" :value="old('contactNumber')" autofocus autocomplete="contactNumber" />
                 @error('contactNumber') <p class="error text-red-500 text-xs italic mt-4">{{ $message }}</p> @enderror
             </div>
 
             <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" autocomplete="new-password" />
+                @error('password') <p class="error text-red-500 text-xs italic mt-4">{{ $message }}</p> @enderror
             </div>
 
             <div class="mt-4">
                 <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" autocomplete="new-password" />
+                @error('password_confirmation') <p class="error text-red-500 text-xs italic mt-4">{{ $message }}</p> @enderror
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())

@@ -39,8 +39,8 @@
                     </a>
                 @endif
 
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
-                    {{ __('  Dont have account?') }}
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 ps-2" href="{{ route('register') }}">
+                    {{ __("Don't have account?") }}
                 </a>
 
 
