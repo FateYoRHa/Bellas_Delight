@@ -19,7 +19,8 @@ return [
             'records' => 'c,r,u,d',
             'report' => 'c,r,u,d',
             'profile' => 'r,u,d',
-            'orders' => 'r,u,d'
+            'orders' => 'r,u,d',
+            'menu' => 'c,r,u,d'
         ],
         'employee' => [
             'report' => 'c,r,u,d',

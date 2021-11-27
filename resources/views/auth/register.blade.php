@@ -26,7 +26,7 @@
             {{-- EMAIL --}}
             <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full @error('email') is-invalid @enderror" type="email"
+                <x-jet-input id="email" class="block mt-1 w-full @error('email') border-red-500 @enderror" type="email"
                     name="email" :value="old('email')" />
                 @error('email') <p class="error text-red-500 text-xs italic mt-4">{{ $message }}</p> @enderror
             </div>
@@ -68,6 +68,7 @@
                                         'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
                                 ]) !!}
                             </div>
+                            @error('lastName') <p class="error text-red-500 text-xs italic mt-4">{{ $message }}</p> @enderror
                         </div>
                     </x-jet-label>
                 </div>
