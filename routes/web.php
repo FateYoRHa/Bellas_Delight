@@ -73,7 +73,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:administrator']
     // Route::resource('product-menu', MenuController::class)->name('index','product-menu');
 
 });
-Route::resource('product-menu', MenuController::class)->name('index','product-menu');
+
 
 //CUSTOMER ROUTES
 Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:customer']], function(){
@@ -81,13 +81,14 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:customer']], fu
     //     return view('/customer/menu/menu');
     // })->name('menu');
 
+    Route::resource('product-menu', MenuController::class)->name('index','product-menu');
 
+    Route::get('cart', [MenuController::class, 'cartList'])->name('cart.list');
+    Route::post('cart', [MenuController::class, 'addToCart'])->name('cart.store');
 
-
-
-    Route::get('/customer/menu/cart', function(){
-        return view('/customer/menu/cart');
-    })->name('cart');
+    // Route::get('/customer/menu/cart', function(){
+    //     return view('/customer/menu/cart');
+    // })->name('cart');
 });
 
 // require_once __DIR__ . '/jetstream.php';

@@ -32,8 +32,15 @@
                                                 role="button"><button class="btn btn-success">Order</button></a>
                                         </div>
                                         <div class="me-md-3">
-                                            {{-- <a id="btnAddCart" data_id="{{$product->id}}" role="button"><button class="btn btn-success">Add to Cart</button></a> --}}
-                                            {{-- <p class="btn-holder"><a href="{{ route('add.to.cart', $product->id) }}" class="btn btn-warning btn-block text-center" role="button">Add to cart</a> </p> --}}
+                                            <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" value="{{ $product->id }}" name="id">
+                                                <input type="hidden" value="{{ $product->productName }}" name="name">
+                                                <input type="hidden" value="{{ $product->productPrice }}" name="price">
+                                                <input type="hidden" value="{{ $product->profile_photo_path }}"  name="image">
+                                                <input type="hidden" value="1" name="quantity">
+                                                <button class="px-4 py-2 text-black bg-blue-800 rounded">Add To Cart</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

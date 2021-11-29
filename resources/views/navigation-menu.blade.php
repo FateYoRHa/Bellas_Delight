@@ -37,7 +37,7 @@
                                 {{ __('Menu') }}
                             </x-jet-nav-link>
 
-                            <x-jet-nav-link href="{{ route('cart') }}" :active="request()->routeIs('cart')">
+                            <x-jet-nav-link href="{{ route('cart.list') }}" :active="request()->routeIs('cart.list')">
                                 {{ __('Cart') }}
                             </x-jet-nav-link>
                         @endif
@@ -223,7 +223,7 @@
                         {{ __('Menu') }}
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ route('cart') }}" :active="request()->routeIs('cart')">
+                    <x-jet-nav-link href="{{ route('cart.list') }}" :active="request()->routeIs('cart.list')">
                         {{ __('Cart') }}
                     </x-jet-nav-link>
                 @endif
