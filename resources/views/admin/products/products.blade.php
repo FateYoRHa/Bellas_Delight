@@ -24,7 +24,8 @@
                             <thead>
                                 <tr>
                                     {{-- <th scope="col" hidden>ID</th> --}}
-                                    <th scope="col" hidden>Photo</th>
+                                    <th scope="col" hidden>ID</th>
+                                    <th scope="col">Product Photo</th>
                                     <th scope="col">Product Name</th>
                                     <th scope="col">Category</th>
                                     <th scope="col">Description</th>
@@ -34,9 +35,52 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {{-- <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
+                                    <!-- Profile Photo File Input -->
+                                    <input type="file" class="hidden"
+                                                wire:model="photo"
+                                                x-ref="photo"
+                                                x-on:change="
+                                                        photoName = $refs.photo.files[0].firstName;
+                                                        const reader = new FileReader();
+                                                        reader.onload = (e) => {
+                                                            photoPreview = e.target.result;
+                                                        };
+                                                        reader.readAsDataURL($refs.photo.files[0]);
+                                                " />
+
+                                    <x-jet-label for="photo" value="{{ __('Photo') }}" />
+
+                                    <!-- Current Profile Photo -->
+                                    <div class="mt-2" x-show="! photoPreview">
+                                        <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->firstName }}" class="rounded-full h-20 w-20 object-cover">
+                                    </div>
+
+                                    <!-- New Profile Photo Preview -->
+                                    <div class="mt-2" x-show="photoPreview">
+                                        <span class="block rounded-full w-20 h-20 bg-cover bg-no-repeat bg-center"
+                                              x-bind:style="'background-image: url(\'' + photoPreview + '\');'">
+                                        </span>
+                                    </div>
+
+                                    <x-jet-secondary-button class="mt-2 mr-2" type="button" x-on:click.prevent="$refs.photo.click()">
+                                        {{ __('Select A New Photo') }}
+                                    </x-jet-secondary-button>
+
+                                    @if ($this->user->profile_photo_path)
+                                        <x-jet-secondary-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
+                                            {{ __('Remove Photo') }}
+                                        </x-jet-secondary-button>
+                                    @endif
+
+                                    <x-jet-input-error for="photo" class="mt-2" />
+                                </div> --}}
                                 @foreach ($products as $product)
                                     <tr>
-                                        <td id="lID{{ $product->id }}" hidden></td>
+                                        <td id="lID{{ $product->id }}" hidden>{{ $product->id }}</td>
+                                        <td>
+                                            <img src="{{ $product->profile_photo_path }}" alt="{{ $product->productName }}">
+                                        </td>
                                         <td>{{ $product->productName }}</td>
                                         <td>{{ $product->category }}</td>
                                         <td>{{ $product->productDesc }}</td>
@@ -46,13 +90,15 @@
                                         <td>
                                             <div class="btn-group" role="group">
                                                 <div class=" me-md-3">
-                                                  <a id="btnEditModal" data_id="{{$product->id}}" role="button"><button class="btn btn-success">Edit</button></a>
+                                                    <a id="btnEditModal" data_id="{{ $product->id }}"
+                                                        role="button"><button class="btn btn-success">Edit</button></a>
 
                                                 </div>
                                                 <div class="ms-md-3">
-                                                  <a id="btnDelete" data_id="{{$product->id}}" role="button"><button class="btn btn-danger">Delete</button></a>
+                                                    <a id="btnDelete" data_id="{{ $product->id }}"
+                                                        role="button"><button class="btn btn-danger">Delete</button></a>
                                                 </div>
-                                              </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -83,9 +129,18 @@
                                     aria-label="Close"></button>
                             </div>
 
-                            <form method="POST" action="{{ route('products.store') }}">
+                            <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     @csrf
+                                    <div class="mb-3">
+                                        <div class="form-group d-flex flex-column">
+                                            <label for="profile_photo_path2" class="form-label">Product Image</label>
+                                            <input class="form-control py-3" type="file" id="profile_photo_path2" name="profile_photo_path">
+
+                                            {{-- <p>@error('profile_photo_path') {{ $message }} @enderror</p> --}}
+
+                                        </div>
+                                    </div>
                                     <div class="mb-3">
                                         <label for="cat" class="form-label">Category</label>
                                         <select class="form-control" type="string" name="category">
@@ -188,6 +243,7 @@
                     data: $('#productEditForm').serialize(),
                     url: "{{ route('products.store') }}",
                     type: "POST",
+                    enctype: "multipart/form-data",
 
                     success: function(data) {
                         $('#editModal').modal('hide');
@@ -201,7 +257,7 @@
 
                     error: function(data) {
                         console.log('Error:', data);
-                        swal("Error!", "Please fill all required fields or change Book ID",
+                        swal("Error!", "Please fill all required fields",
                             "warning");
                     }
                 })
@@ -237,6 +293,9 @@
 
                                 error: function(data) {
                                     console.log("Error:", data);
+                                    swal("Product still have some left.", {
+                                        icon: "error",
+                                    });
                                 }
                             });
 
@@ -260,6 +319,7 @@
                 $.get("{{ route('products.index') }}/" + data_id + "/edit", function(data) {
                     console.log(data);
                     $("#id2").val(data.id);
+                    $("#profile_photo_path2").val(data.profile_photo_path);
                     $("#category2").val(data.category);
                     $("#productName2").val(data.productName);
                     $("#quantity2").val(data.quantity);

@@ -2,7 +2,7 @@
     <x-slot name="title">
         {{ __('Profile Information') }}
     </x-slot>
-
+{{-- WORDS AT THE SIDE --}}
     <x-slot name="description">
         {{ __('Update your account\'s profile information and email address.') }}
     </x-slot>

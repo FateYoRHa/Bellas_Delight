@@ -19,7 +19,21 @@ class ProductController extends Controller
         # code...
     }
 
+    public $productName;
+    public $category;
+    public $productDesc;
+    public $productPrice;
+    public $quantity;
+    public $profile_photo_path;
 
+    protected $rules = [
+        'productName' => 'required|min:1',
+        'category' => 'required',
+        'productDesc' => 'required',
+        'productPrice' => 'required|integer',
+        'quantity' => 'required|integer',
+        'profile_photo_path' => 'image|max:5000',
+    ];
 
     public function index()
     {
@@ -61,12 +75,25 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
+
+        if($request->hasfile('profile_photo_path'))
+        {
+            $file = $request->file('profile_photo_path');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extention;
+            $file->move('storage/app/public/profile-photos/', $filename);
+            $request->profile_photo_path = $filename;
+        }
         Product::updateorCreate(
             ['id'=>$request->id], $request->all()
         );
 
         return redirect()->route('products.index')->with('message', 'Action was Successful');
     }
+
+    // public function validate(){
+
+    // }
 
     /**
      * Display the specified resource.
@@ -114,7 +141,12 @@ class ProductController extends Controller
     {
         //
         $listings = Product::find($id);
-        $listings->delete();
+        if($listings->quantity > 0){
+            return redirect()->route('products.index')->with('message', 'Cannot delete');
+        }else{
+            $listings->delete();
+        }
+
     }
 
 

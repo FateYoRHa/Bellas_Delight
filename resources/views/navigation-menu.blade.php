@@ -30,21 +30,10 @@
                             </x-jet-nav-link>
                         @endif
 
-                        {{-- EMPLOYEE NAV/LINKS --}}
-                        @if (Auth::user()->hasRole('employee'))
-                            <x-jet-nav-link href="{{ route('employee') }}" :active="request()->routeIs('orders')">
-                                {{ __('Orders') }}
-                            </x-jet-nav-link>
-
-                            <x-jet-nav-link href="{{ route('employee') }}" :active="request()->routeIs('products')">
-                                {{ __('Products') }}
-                            </x-jet-nav-link>
-                        @endif
-
                         {{-- CUSTOMER NAV/LINKS --}}
                         @if (Auth::user()->hasRole('customer'))
                             {{-- to be changed to customer.menu --}}
-                            <x-jet-nav-link href="{{ route('menu') }}" :active="request()->routeIs('menu')">
+                            <x-jet-nav-link href="{{ route('product-menu') }}" :active="request()->routeIs('product-menu')">
                                 {{ __('Menu') }}
                             </x-jet-nav-link>
 
@@ -227,21 +216,10 @@
                     </x-jet-nav-link>
                 @endif
 
-                {{-- EMPLOYEE NAV/LINKS --}}
-                @if (Auth::user()->hasRole('employee'))
-                    <x-jet-nav-link href="{{ route('employee') }}" :active="request()->routeIs('employee')">
-                        {{ __('Orders') }}
-                    </x-jet-nav-link>
-
-                    <x-jet-nav-link href="{{ route('employee') }}" :active="request()->routeIs('employee')">
-                        {{ __('Products') }}
-                    </x-jet-nav-link>
-                @endif
-
                 {{-- CUSTOMER NAV/LINKS --}}
                 @if (Auth::user()->hasRole('customer'))
                     {{-- to be changed to customer.menu --}}
-                    <x-jet-nav-link href="{{ route('menu') }}" :active="request()->routeIs('menu')">
+                    <x-jet-nav-link href="{{ route('product-menu') }}" :active="request()->routeIs('product-menu')">
                         {{ __('Menu') }}
                     </x-jet-nav-link>
 

@@ -20,23 +20,12 @@ return [
             'report' => 'c,r,u,d',
             'profile' => 'r,u,d',
             'orders' => 'r,u,d',
-            'menu' => 'c,r,u,d'
-        ],
-        'employee' => [
-            'report' => 'c,r,u,d',
-            'products' => 'r,u',
-            'orders' => 'r,u,d',
-            'profile' => 'r,u'
+            'product-menu' => 'r'
         ],
         'customer' => [
-            'profile' => 'r,u',
-            'menu' => 'r,u',
+            'product-menu' => 'c,r,u,d',
             'cart' => 'c,r,u,d'
         ],
-        'guest' => [
-            'menu' => 'r',
-            'register' => 'c'
-        ]
     ],
 
     'permissions_map' => [
