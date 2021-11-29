@@ -15,9 +15,7 @@ use App\Http\Controllers\MenuController;
 |
 */
 
-Route::get('/', function () {
-    return view('/customer/menu/menu');
-});
+Route::get('/', [MenuController::class, 'index']);
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
@@ -75,14 +73,14 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:administrator']
     // Route::resource('product-menu', MenuController::class)->name('index','product-menu');
 
 });
-
+Route::resource('product-menu', MenuController::class)->name('index','product-menu');
 
 //CUSTOMER ROUTES
 Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:customer']], function(){
     // Route::get('/customer/menu/menu', function(){
     //     return view('/customer/menu/menu');
     // })->name('menu');
-    Route::resource('product-menu', MenuController::class)->name('index','product-menu');
+
 
 
 
