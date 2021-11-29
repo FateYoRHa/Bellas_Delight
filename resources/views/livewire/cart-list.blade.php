@@ -47,10 +47,10 @@
             </tbody>
         </table>
         <div>
-            Total: ${{ Cart::getTotal() }}
+            Total: ₱{{ Cart::getTotal() }}
         </div>
         <div class="mt-5">
-            <a href="#" class="px-6 py-2 text-red-800 bg-red-300" wire:click.prevent="clearAllCart">Remove All Cart</a>
+            <button class="px-6 py-2 text-red-800 bg-red-300" wire:click.prevent="clearAllCart">Remove All Cart</button>
         </div>
 
     </div>
