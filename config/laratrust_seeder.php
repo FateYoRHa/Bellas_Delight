@@ -20,12 +20,16 @@ return [
             'report' => 'c,r,u,d',
             'profile' => 'r,u,d',
             'orders' => 'r,u,d',
-            'product-menu' => 'r'
         ],
         'customer' => [
-            'product-menu' => 'c,r,u,d',
+            'product-menu' => 'r,u',
             'cart' => 'c,r,u,d'
         ],
+    ],
+    'permission_structure' => [
+        'administrator' => [
+            'product-menu' => 'r',
+        ]
     ],
 
     'permissions_map' => [

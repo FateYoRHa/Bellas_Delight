@@ -14,6 +14,7 @@ class Product extends Model
         'productName',
         'productDesc',
         'quantity',
-        'productPrice'
+        'productPrice',
+        'profile_photo_path'
     ];
 }

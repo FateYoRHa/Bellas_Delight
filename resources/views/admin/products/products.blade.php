@@ -35,46 +35,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
-                                    <!-- Profile Photo File Input -->
-                                    <input type="file" class="hidden"
-                                                wire:model="photo"
-                                                x-ref="photo"
-                                                x-on:change="
-                                                        photoName = $refs.photo.files[0].firstName;
-                                                        const reader = new FileReader();
-                                                        reader.onload = (e) => {
-                                                            photoPreview = e.target.result;
-                                                        };
-                                                        reader.readAsDataURL($refs.photo.files[0]);
-                                                " />
 
-                                    <x-jet-label for="photo" value="{{ __('Photo') }}" />
-
-                                    <!-- Current Profile Photo -->
-                                    <div class="mt-2" x-show="! photoPreview">
-                                        <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->firstName }}" class="rounded-full h-20 w-20 object-cover">
-                                    </div>
-
-                                    <!-- New Profile Photo Preview -->
-                                    <div class="mt-2" x-show="photoPreview">
-                                        <span class="block rounded-full w-20 h-20 bg-cover bg-no-repeat bg-center"
-                                              x-bind:style="'background-image: url(\'' + photoPreview + '\');'">
-                                        </span>
-                                    </div>
-
-                                    <x-jet-secondary-button class="mt-2 mr-2" type="button" x-on:click.prevent="$refs.photo.click()">
-                                        {{ __('Select A New Photo') }}
-                                    </x-jet-secondary-button>
-
-                                    @if ($this->user->profile_photo_path)
-                                        <x-jet-secondary-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
-                                            {{ __('Remove Photo') }}
-                                        </x-jet-secondary-button>
-                                    @endif
-
-                                    <x-jet-input-error for="photo" class="mt-2" />
-                                </div> --}}
                                 @foreach ($products as $product)
                                     <tr>
                                         <td id="lID{{ $product->id }}" hidden>{{ $product->id }}</td>
@@ -187,6 +148,13 @@
                             </div>
                             <form id="productEditForm">
                                 <div class="modal-body">
+                                    <div class="form-group d-flex flex-column">
+                                        <label for="profile_photo_path2" class="form-label">Product Image</label>
+                                        <input class="form-control py-3" type="file" id="profile_photo_path2" name="profile_photo_path">
+
+                                        {{-- <p>@error('profile_photo_path') {{ $message }} @enderror</p> --}}
+
+                                    </div>
                                     <input hidden class="form-control" id="id2" name="id">
                                     <label for="cat" class="form-label">Category</label>
                                     <select class="form-control" type="string" name="category" id="category2">

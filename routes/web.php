@@ -72,7 +72,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:administrator']
     Route::get('/admin/users', function(){
         return view('/admin/users/users');
     })->name('users');
-    Route::resource('product-menu', MenuController::class)->name('index','product-menu');
+    // Route::resource('product-menu', MenuController::class)->name('index','product-menu');
 
 });
 
