@@ -105,6 +105,6 @@ class MenuController extends Controller
         ]);
         session()->flash('success', 'Product is Added to Cart Successfully !');
 
-        return redirect()->route('cart.list');
+        return redirect()->route('product-menu');
     }
 }
