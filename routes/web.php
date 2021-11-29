@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MenuController;
+use App\Http\Livewire\CheckoutComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,6 +86,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:customer']], fu
 
     Route::get('cart', [MenuController::class, 'cartList'])->name('cart.list');
     Route::post('cart', [MenuController::class, 'addToCart'])->name('cart.store');
+
+    Route::get('checkout',[MenuController::class, 'checkout'])->name('checkout');
+
 
     // Route::get('/customer/menu/cart', function(){
     //     return view('/customer/menu/cart');

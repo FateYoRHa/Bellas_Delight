@@ -107,4 +107,9 @@ class MenuController extends Controller
 
         return redirect()->route('product-menu');
     }
+
+    public function checkout()
+    {
+        return view('customer.cart.checkout');
+    }
 }
