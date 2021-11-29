@@ -51,6 +51,7 @@
         </div>
         <div class="mt-5">
             <button class="px-6 py-2 text-red-800 bg-red-300" wire:click.prevent="clearAllCart">Remove All Cart</button>
+            <button class="px-6 py-2 text-black-800 bg-green-300 float-end" wire:click.prevent="clearAllCart">Check Out</button>
         </div>
 
     </div>
