@@ -77,7 +77,7 @@
                                             <tr>
                                                 <td> <img src="{{ $item['attributes']['image'] }}" class="w-20 rounded" alt="Thumbnail"></td>
                                                 <td>{{ $item['name'] }}</td>
-                                                <td>{{ $item['quantity'] }}</td>
+                                                <td>x{{ $item['quantity'] }}</td>
                                                 <td>₱{{ $item['price'] }}({{ $item['price'] * $item['quantity'] }})</td>
                                             </tr>
                                             @endforeach
