@@ -19,7 +19,7 @@ class CreateOrderItemsTable extends Migration
             // $table->bigInteger('order_id')->unsigned();
             // $table->integer('product_id')->unsigned();
             $table->unsignedInteger('quantity');
-            $table->decimal('price', 20, 6);
+            $table->decimal('price', 20, 2);
 
             $table->foreignId('order_id')->constrained('orders')->cascadeOnDelete();
             $table->foreignId('product_id')->constrained('products')->cascadeOnDelete();

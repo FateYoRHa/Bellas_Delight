@@ -15,7 +15,7 @@
                     <th class="text-left">Product Name</th>
                     <th class="pl-5 text-left lg:text-right lg:pl-0">Quantity
                     </th>
-                    <th class="text-right md:table-cell">Price</th>
+                    <th class="text-right md:table-cell">Price/Total</th>
                     <th class="hidden text-right md:table-cell">Remove </th>
                 </tr>
             </thead>

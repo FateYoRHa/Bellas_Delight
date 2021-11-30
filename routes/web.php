@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MenuController;
@@ -16,7 +17,7 @@ use App\Http\Livewire\CheckoutComponent;
 |
 */
 
-Route::get('/product-menu', [MenuController::class, 'index']);
+Route::get('/', [MenuController::class, 'index']);
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
@@ -57,9 +58,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
 //ADMIN ROUTES
 Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:administrator']], function(){
 
-    Route::get('/admin/dashboard', function(){
-        return view('/admin/dashboard');
-    })->name('reports');
+    // Route::get('/admin/dashboard', function(){
+    //     return view('/admin/dashboard');
+    // })->name('reports');
+    Route::resource('/admin/dashboard', DashboardController::class)->name('index','admin.dashboard');
     // Route::get('/admin/products/products', function(){
     //     return view('/admin/products/products');
     // })->name('products');

@@ -22,10 +22,10 @@ class CreateOrdersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone_number');
-            $table->decimal('total',20, 6);
+            $table->decimal('total',20, 2);
             $table->string('payment_method');
             $table->string('email');
-            $table->enum('status', ['pending', 'cancelled', 'completed', 'decline'])->default('pending');
+            $table->enum('status', ['pending', 'cancelled', 'delivered', 'decline'])->default('delivered');
             $table->timestamps();
 
 

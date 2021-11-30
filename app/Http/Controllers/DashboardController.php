@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Orders;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -11,13 +13,6 @@ class DashboardController extends Controller
 
     public function index()
     {
-        if(Auth::user()->hasRole('administrator')){
-            return view('admin.dashboard');
-        }elseif(Auth::user()->hasRole('employee')){
-            return view('');
-        }elseif(Auth::user()->hasRole('customer')){
-            return view('customer.menu.menu');
-        }
-
+        return view('admin.dashboard');
     }
 }
