@@ -7,7 +7,7 @@
                 @endif
             </div>
         </div>
-{{-- {{ dd($cartItems) }} --}}
+{{-- {{ dd(Cart::getInstanceName()) }} --}}
         <form action="" method="POST" role="form">
             @csrf
             <div class="row">
