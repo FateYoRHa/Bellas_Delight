@@ -4,7 +4,11 @@
             {{ __('Menu') }}
         </h2>
     </x-slot>
-
+    @if ($message = Session::get('success'))
+    <div class="p-4 mb-3 bg-green-400 rounded">
+        <p class="text-green-800">{{ $message }}</p>
+    </div>
+@endif
     <div class="py-12">
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

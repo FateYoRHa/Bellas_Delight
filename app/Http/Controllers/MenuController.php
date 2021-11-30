@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
+use App\Models\Orders;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class MenuController extends Controller
 {
@@ -124,5 +126,32 @@ class MenuController extends Controller
     public function checkout()
     {
         return view('customer.cart.checkout');
+    }
+
+    public function clickCheckout(Request $request){
+        // dd($request);
+        $items = \Cart::getContent();
+        $order = new Orders();
+        $id = auth()->user()->id;
+        $order->cart = serialize($items);
+        $order->first_name = auth()->user()->firstName;
+        $order->last_name = auth()->user()->lastName;
+        $order->address = auth()->user()->address;
+        $order->phone_number = auth()->user()->contactNumber;
+        $order->email = auth()->user()->email;
+        $order->payment_method = $request->input('payment_method');
+        // $order->first_name = $request->input('first_name');
+        // $order->last_name = $request->input('last_name');
+        // $order->address = $request->input('address');
+        // $order->phone_number = $request->input('phone_number');
+        // $order->email = $request->input('email');
+        // $order->payment_method = $request->input('payment_method');
+        $order->user_id = $id;
+
+        Auth::user()->orders()->save($order);
+        
+        session()->flash('success', 'Order send, please wait for confirmation');
+        \Cart::clear();
+        return redirect()->route('product-menu');
     }
 }

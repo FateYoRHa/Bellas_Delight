@@ -8,7 +8,7 @@
             </div>
         </div>
 {{-- {{ dd(Cart::getInstanceName()) }} --}}
-        <form action="" method="POST" role="form">
+        <form action="{{ route('cart.checkout') }}" method="POST" role="form">
             @csrf
             <div class="row">
                 <div class="col-md-6">
@@ -20,24 +20,24 @@
                             <div class="form-row">
                                 <div class="col form-group">
                                     <label>First name</label>
-                                    <input type="text" class="form-control" name="first_name"
+                                    <input type="text" class="form-control" name="first_name" id="first_name"
                                         value="{{ auth()->user()->firstName }}" disabled>
                                 </div>
                                 <div class="col form-group">
                                     <label>Last name</label>
-                                    <input type="text" class="form-control" name="last_name"
+                                    <input type="text" class="form-control" name="last_name" id="last_name"
                                         value="{{ auth()->user()->lastName }}" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Address</label>
-                                <input type="text" class="form-control" name="address"
+                                <input type="text" class="form-control" name="address" id="address"
                                     value="{{ auth()->user()->address }}" disabled>
                             </div>
                             <div class="form-row">
                                 <div class="form-group  col-md-6">
                                     <label>Phone Number</label>
-                                    <input type="text" class="form-control" name="phone_number"
+                                    <input type="text" class="form-control" name="phone_number" id="phone_number"
                                         value="{{ auth()->user()->contactNumber }}" disabled>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@
                                         <label class="form-check-label" for="gcash">
                                             GCASH
                                         </label>
-                                        <input class="form-check-input" type="radio" name="gcash" id="gcash"
+                                        <input class="form-check-input" type="radio" name="payment_method" id="gcash"
                                             value="GCASH">
 
                                     </div>
@@ -106,7 +106,7 @@
                                         <label class="form-check-label" for="cod">
                                             Cash-On-Delivery
                                         </label>
-                                        <input class="form-check-input" type="radio" name="cod" id="cod" value="CoD">
+                                        <input class="form-check-input" type="radio" name="payment_method" id="cod" value="CoD">
 
                                     </div>
                                 </div>

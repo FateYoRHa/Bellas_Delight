@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,24 +11,9 @@ class Orders extends Model
 
     protected $table = 'orders';
 
-    protected $fillable = [
-        'order_number',
-        'user_id',
-        'status',
-        'grand_total',
-        'item_count',
-        'payment_status',
-        'payment_method',
-        'first_name',
-        'last_name',
-        'address',
-        'email',
-        'phone_number'
-    ];
-
     public function user()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class);
     }
 
     public function items()
