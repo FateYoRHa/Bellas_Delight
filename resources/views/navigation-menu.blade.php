@@ -6,22 +6,22 @@
                 <div class="flex">
                     <!-- Logo -->
                     <div class="flex-shrink-0 flex items-center" disabled>
-                            <x-jet-application-mark class="block h-9 w-auto" />
+                        <x-jet-application-mark class="block h-9 w-auto" />
                     </div>
 
                     <!-- Navigation Links -->
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         {{-- ADMIN NAV/LINKS --}}
                         @if (Auth::user()->hasRole('administrator'))
-                            <x-jet-nav-link href="{{ route('orders') }}" :active="request()->routeIs('orders')">
-                                {{ __('Orders') }}
-                            </x-jet-nav-link>
-
                             <x-jet-nav-link href="{{ route('reports') }}" :active="request()->routeIs('reports')">
                                 {{ __('Reports') }}
                             </x-jet-nav-link>
 
-                            <x-jet-nav-link href="{{route('products.index')}}" :active="request()->routeIs('products')">
+                            <x-jet-nav-link href="{{ route('orders') }}" :active="request()->routeIs('orders')">
+                                {{ __('Orders') }}
+                            </x-jet-nav-link>
+
+                            <x-jet-nav-link href="{{ route('products.index') }}" :active="request()->routeIs('products')">
                                 {{ __('Products') }}
                             </x-jet-nav-link>
 
@@ -33,7 +33,8 @@
                         {{-- CUSTOMER NAV/LINKS --}}
                         @if (Auth::user()->hasRole('customer'))
                             {{-- to be changed to customer.menu --}}
-                            <x-jet-nav-link href="{{ route('product-menu') }}" :active="request()->routeIs('product-menu')">
+                            <x-jet-nav-link href="{{ route('product-menu') }}"
+                                :active="request()->routeIs('product-menu')">
                                 {{ __('Menu') }}
                             </x-jet-nav-link>
 
@@ -155,7 +156,7 @@
                                     @csrf
 
                                     <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                this.closest('form').submit();">
+                                                                    this.closest('form').submit();">
                                         {{ __('Log Out') }}
                                     </x-jet-dropdown-link>
                                 </form>
@@ -208,7 +209,8 @@
                         {{ __('Reports') }}
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{route('products.index')}}">Products</a>" :active="request()->routeIs('products')">
+                    <x-jet-nav-link href="{{ route('products.index') }}">Products</a>"
+                        :active="request()->routeIs('products')">
                         {{ __('Products') }}
                     </x-jet-nav-link>
 
@@ -266,7 +268,7 @@
                         @csrf
 
                         <x-jet-responsive-nav-link href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                this.closest('form').submit();">
+                                                    this.closest('form').submit();">
                             {{ __('Log Out') }}
                         </x-jet-responsive-nav-link>
                     </form>

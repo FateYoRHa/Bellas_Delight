@@ -5,7 +5,6 @@
         </div>
     @endif
     <h3 class="text-3xl text-bold">
-
         Total of {{ Cart::getTotalQuantity() }} Item/s in Cart
     </h3>
     <div class="flex-1">
@@ -34,7 +33,7 @@
                         </td>
                         <td class="text-right md:table-cell">
                             <span class="text-sm font-medium lg:text-base">
-                                ₱{{ $item['price'] }}
+                                ₱{{ $item['price'] * $item['quantity'] }}
                             </span>
                         </td>
                         <td class="text-right md:table-cell">

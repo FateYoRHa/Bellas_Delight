@@ -7,11 +7,11 @@
                 @endif
             </div>
         </div>
-        
+{{-- {{ dd($cartItems) }} --}}
         <form action="" method="POST" role="form">
             @csrf
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <div class="card">
                         <header class="card-header">
                             <h4 class="card-title mt-2">Billing Details</h4>
@@ -55,21 +55,37 @@
                         </article>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
                                 <header class="card-header">
-                                    <h4 class="card-title mt-2">Your Order</h4>
+                                    <h4 class="card-title mt-2">Your Order/s</h4>
                                 </header>
                                 <article class="card-body">
-                                    <dl class="dlist-align">
-                                        <dt>Items: </dt>
-                                        <dd> ITEMS PLACE HOLDER </dd>
-                                    </dl>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">Product Name</th>
+                                                <th scope="col">Quantity</th>
+                                                <th scope="col">Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($cartItems as $item)
+                                            <tr>
+                                                <td> <img src="{{ $item['attributes']['image'] }}" class="w-20 rounded" alt="Thumbnail"></td>
+                                                <td>{{ $item['name'] }}</td>
+                                                <td>{{ $item['quantity'] }}</td>
+                                                <td>₱{{ $item['price'] }}({{ $item['price'] * $item['quantity'] }})</td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                     <dl class="dlist-align">
                                         <dt>Total cost: </dt>
-                                        <dd class="text-right h5 b"> ₱{{ \Cart::getSubTotal() }} </dd>
+                                        <dd class="text-right h5 b" name="grand_total"> ₱{{ \Cart::getSubTotal() }} </dd>
                                     </dl>
                                 </article>
                             </div>
