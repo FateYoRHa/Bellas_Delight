@@ -7,7 +7,7 @@
                 @endif
             </div>
         </div>
-{{-- {{ dd(Cart::getInstanceName()) }} --}}
+        {{-- {{ dd(Cart::getInstanceName()) }} --}}
         <form action="{{ route('cart.checkout') }}" method="POST" role="form">
             @csrf
             <div class="row">
@@ -74,18 +74,21 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($cartItems as $item)
-                                            <tr>
-                                                <td> <img src="{{ $item['attributes']['image'] }}" class="w-20 rounded" alt="Thumbnail"></td>
-                                                <td>{{ $item['name'] }}</td>
-                                                <td>x{{ $item['quantity'] }}</td>
-                                                <td>₱{{ $item['price'] }}({{ $item['price'] * $item['quantity'] }})</td>
-                                            </tr>
+                                                <tr>
+                                                    <td> <img src="{{ $item['attributes']['image'] }}"
+                                                            class="w-20 rounded" alt="Thumbnail"></td>
+                                                    <td>{{ $item['name'] }}</td>
+                                                    <td>x{{ $item['quantity'] }}</td>
+                                                    <td>₱{{ $item['price'] }}({{ $item['price'] * $item['quantity'] }})
+                                                    </td>
+                                                </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
                                     <dl class="dlist-align">
                                         <dt>Total cost: </dt>
-                                        <dd class="text-right h5 b" name="grand_total"> ₱{{ \Cart::getSubTotal() }} </dd>
+                                        <dd class="text-right h5 b" name="grand_total"> ₱{{ \Cart::getSubTotal() }}
+                                        </dd>
                                     </dl>
                                 </article>
                             </div>
@@ -106,10 +109,12 @@
                                         <label class="form-check-label" for="cod">
                                             Cash-On-Delivery
                                         </label>
-                                        <input class="form-check-input" type="radio" name="payment_method" id="cod" value="CoD">
+                                        <input class="form-check-input" type="radio" name="payment_method" id="cod"
+                                            value="CoD">
 
                                     </div>
                                 </div>
+                                {{-- <input type="number" value="{{ \Cart::getSubTotal() }}" name="total" hidden> --}}
                             </div>
                         </div>
                         <div class="col-md-12 mt-4">

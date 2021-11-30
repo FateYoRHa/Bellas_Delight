@@ -16,7 +16,7 @@ use App\Http\Livewire\CheckoutComponent;
 |
 */
 
-Route::get('/', [MenuController::class, 'index']);
+Route::get('/product-menu', [MenuController::class, 'index']);
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');

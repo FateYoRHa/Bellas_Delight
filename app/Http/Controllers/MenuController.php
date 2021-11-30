@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use App\Models\Orders;
+use App\Models\OrderItem;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -131,6 +132,7 @@ class MenuController extends Controller
     public function clickCheckout(Request $request){
         // dd($request);
         $items = \Cart::getContent();
+        $total = \Cart::getSubTotal();
         $order = new Orders();
         $id = auth()->user()->id;
         $order->cart = serialize($items);
@@ -140,6 +142,8 @@ class MenuController extends Controller
         $order->phone_number = auth()->user()->contactNumber;
         $order->email = auth()->user()->email;
         $order->payment_method = $request->input('payment_method');
+        $order->total = $total;
+
         // $order->first_name = $request->input('first_name');
         // $order->last_name = $request->input('last_name');
         // $order->address = $request->input('address');
@@ -147,9 +151,19 @@ class MenuController extends Controller
         // $order->email = $request->input('email');
         // $order->payment_method = $request->input('payment_method');
         $order->user_id = $id;
-
+        // dd($order);
         Auth::user()->orders()->save($order);
-        
+        $cart_item = \Cart::getContent();
+        //  dd($order->id);
+
+        foreach($cart_item as $item){
+            $orders = new OrderItem();
+            $orders->order_id = $order->id;
+            $orders->product_id = $item->id;
+            $orders->quantity = $item->quantity;
+            $orders->price = $item->price*$item->quantity;
+            $orders->save();
+        }
         session()->flash('success', 'Order send, please wait for confirmation');
         \Cart::clear();
         return redirect()->route('product-menu');

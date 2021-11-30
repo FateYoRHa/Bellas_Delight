@@ -14,7 +14,7 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->integer('user_id');
             //holds serialized object
             $table->text('cart');
@@ -22,6 +22,7 @@ class CreateOrdersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone_number');
+            $table->decimal('total',20, 6);
             $table->string('payment_method');
             $table->string('email');
             $table->enum('status', ['pending', 'cancelled', 'completed', 'decline'])->default('pending');

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+    protected $table = 'products';
     // MENU MODEL
     protected $fillable=[
         'category',
@@ -17,4 +18,9 @@ class Product extends Model
         'productPrice',
         'profile_photo_path'
     ];
+
+    public function orderitem()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 }
