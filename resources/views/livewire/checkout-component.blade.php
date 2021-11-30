@@ -7,6 +7,7 @@
                 @endif
             </div>
         </div>
+        
         <form action="" method="POST" role="form">
             @csrf
             <div class="row">
@@ -78,16 +79,19 @@
                                 </header>
                                 <div class="card-body">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="gcash" id="gcash">
                                         <label class="form-check-label" for="gcash">
                                             GCASH
                                         </label>
+                                        <input class="form-check-input" type="radio" name="gcash" id="gcash"
+                                            value="GCASH">
+
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="cod" id="cod" checked>
                                         <label class="form-check-label" for="cod">
                                             Cash-On-Delivery
                                         </label>
+                                        <input class="form-check-input" type="radio" name="cod" id="cod" value="CoD">
+
                                     </div>
                                 </div>
                             </div>

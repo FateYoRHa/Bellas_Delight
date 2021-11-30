@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MenuController extends Controller
 {
@@ -17,7 +18,19 @@ class MenuController extends Controller
     {
         //
         $menu = DB::table('products')->paginate(8);
-        return view('customer.menu.menu', compact('menu'));
+
+        if(Auth::user()){
+            if(Auth::user()->hasRole('administrator')){
+                return view('admin.dashboard');
+            }
+            else{
+                return view('customer.menu.menu', compact('menu'));
+            }
+        }
+        else{
+            return view('customer.menu.menu', compact('menu'));
+        }
+
     }
 
     /**

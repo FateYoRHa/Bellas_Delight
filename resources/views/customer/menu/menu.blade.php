@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-12">
-        
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="row mx-auto pt-5">
@@ -27,11 +27,6 @@
                                     <p class="card-text">Price: {{ $product->productPrice }}</p>
 
                                     <div class="btn-group" role="group">
-                                        <div class="me-md-3">
-                                            <a id="btnOrder" data_id="{{ $product->id }}"
-                                                data-bs-target="#orderProduct" data-bs-toggle="modal"
-                                                role="button"><button class="btn btn-success">Order</button></a>
-                                        </div>
                                         <div class="me-md-3">
                                             <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
                                                 @csrf

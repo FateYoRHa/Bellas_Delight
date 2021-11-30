@@ -6,7 +6,7 @@
     @endif
     <h3 class="text-3xl text-bold">
 
-        Total {{ Cart::getTotalQuantity() }} Cart
+        Total of {{ Cart::getTotalQuantity() }} Item/s in Cart
     </h3>
     <div class="flex-1">
         <table class="w-full text-sm lg:text-base" cellspacing="0">

@@ -38,8 +38,9 @@
                             </x-jet-nav-link>
 
                             <x-jet-nav-link href="{{ route('cart.list') }}" :active="request()->routeIs('cart.list')">
-                                {{ __('Cart') }}
+                                {{ __('Cart') }}<p class="text-red-500">{{ Cart::getTotalQuantity() }}</p>
                             </x-jet-nav-link>
+
                         @endif
 
 
