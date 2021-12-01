@@ -40,7 +40,7 @@
                                     <tr>
                                         <td id="lID{{ $product->id }}" hidden>{{ $product->id }}</td>
                                         <td>
-                                            <img src="{{ $product->profile_photo_path }}" alt="{{ $product->productName }}">
+                                            <img src="{{ $product->profile_photo_path }}" alt="{{ $product->profile_photo_path }}">
                                         </td>
                                         <td>{{ $product->productName }}</td>
                                         <td>{{ $product->category }}</td>
@@ -104,7 +104,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="cat" class="form-label">Category</label>
-                                        <select class="form-control" type="string" name="category">
+                                        <select class="form-control" type="string" name="category" value="">
                                             @foreach ($categories as $category)
                                                 <option>{{ $category }}</option>
                                             @endforeach
@@ -113,18 +113,22 @@
                                     <div class="mb-3">
                                         <label for="pName" class="form-label">Product Name</label>
                                         <input class="form-control" id="pName" name="productName">
+                                        @error('productName') <p class="error text-red-500 text-xs italic mt-4">{{ $message }}</p> @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="pDesc" class="form-label">Description</label>
                                         <input class="form-control" id="pDesc" name="productDesc">
+                                        @error('productDesc') <p class="error text-red-500 text-xs italic mt-4">{{ $message }}</p> @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="pDesc" class="form-label">Quantity</label>
                                         <input class="form-control" id="quantity" name="quantity">
+                                        @error('quantity') <p class="error text-red-500 text-xs italic mt-4">{{ $message }}</p> @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="price" class="form-label">Price</label>
                                         <input class="form-control" id="productPrice" name="productPrice">
+                                        @error('productPrice') <p class="error text-red-500 text-xs italic mt-4">{{ $message }}</p> @enderror
                                     </div>
 
                                 </div>

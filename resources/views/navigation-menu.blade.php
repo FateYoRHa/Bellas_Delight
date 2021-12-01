@@ -17,7 +17,7 @@
                                 {{ __('Reports') }}
                             </x-jet-nav-link>
 
-                            <x-jet-nav-link href="{{ route('orders') }}" :active="request()->routeIs('orders')">
+                            <x-jet-nav-link href="{{ route('admin.orders') }}" :active="request()->routeIs('admin.orders')">
                                 {{ __('Orders') }}
                             </x-jet-nav-link>
 
@@ -201,7 +201,7 @@
             <div class="pt-2 pb-3 space-y-1">
                 {{-- ADMIN NAV/LINKS --}}
                 @if (Auth::user()->hasRole('administrator'))
-                    <x-jet-nav-link href="{{ route('orders') }}" :active="request()->routeIs('orders')">
+                    <x-jet-nav-link href="{{ route('admin.orders') }}" :active="request()->routeIs('admin.orders')">
                         {{ __('Orders') }}
                     </x-jet-nav-link>
 

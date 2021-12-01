@@ -21,7 +21,7 @@
         <div class="col-md-3">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">Today's Sales: </h5>
+                    <h5 class="card-title">Today's Revenue: </h5>
                     <p class="card-text">₱{{ $todayRevenue }}</p>
                 </div>
             </div>
@@ -30,7 +30,7 @@
         <div class="col-md-3">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">Today's Revenue: </h5>
+                    <h5 class="card-title">Today's Sales: </h5>
                     <p class="card-text">{{ $todaySales }}</p>
                 </div>
             </div>

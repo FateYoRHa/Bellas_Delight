@@ -68,9 +68,11 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:administrator']
     // })->name('products');
     Route::resource('products', ProductController::class);
 
-    Route::get('/admin/products/orders', function(){
-        return view('/admin/products/orders');
-    })->name('orders');
+    // Route::get('/admin/products/orders', function(){
+    //     return view('/admin/products/orders');
+    // })->name('orders');
+    Route::get('orders',[ProductController::class, 'orders'])->name('admin.orders');
+    
     // Route::get('/admin/users', function(){
     //     return view('/admin/users/users');
     // })->name('users');

@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
+use App\Models\Orders;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -39,7 +42,6 @@ class ProductController extends Controller
     {
         //
         $categories = array(
-            '',
             'Bread',
             'Cookie',
             'Dessert',
@@ -76,19 +78,27 @@ class ProductController extends Controller
     {
         //
 
+        // dd($request);
+        $this->validate($request,[
+
+            'profile_photo_path' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
         if($request->hasfile('profile_photo_path'))
         {
             $file = $request->file('profile_photo_path');
             $extention = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extention;
-            $file->move('storage/app/public/profile-photos/', $filename);
-            $request->profile_photo_path = $filename;
+            $filename = $request->productName.'.'.$extention;
+            $file->storeAs('public/product_images', $filename);
+            $request->profile_photo_path = $file;
+
         }
         Product::updateorCreate(
-            ['id'=>$request->id], $request->all()
+            ['id'=>$request->id], $request->all(),
+
         );
 
-        return redirect()->route('products.index')->with('message', 'Action was Successful');
+        return redirect()->route('products.index')->with('message', 'Product was Successfully Added');
     }
 
     // public function validate(){
@@ -147,6 +157,24 @@ class ProductController extends Controller
             $listings->delete();
         }
 
+    }
+    public function orders(){
+        // $orders = DB::table('orders')->paginate(8);
+        // $users = DB::table('users')
+        //     ->join('role_user', 'users.id', '=', 'role_user.user_id')
+        //     ->leftJoin('roles', 'roles.id', '=', 'role_user.role_id')
+        //     ->select('users.*', 'roles.display_name','roles.description', 'role_user.user_id')->paginate(4);
+        $orders = DB::table('orders')
+            ->join('order_items', 'orders.id', '=', 'order_items.order_id')
+            ->select('orders.*', 'order_items.*')->paginate(4);
+        // $orders = Auth::user()->orders;
+        // $orders->transform(function($order, $key){
+        //     $order->cart = unserialize($order->cart);
+        //     return $order;
+        // });
+
+        return view('admin.products.orders',['orders' => $orders]);
+        //return view('admin.products.orders',compact('orders'));
     }
 
 
