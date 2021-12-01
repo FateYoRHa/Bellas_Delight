@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\UserController;
 use App\Http\Livewire\CheckoutComponent;
 
 /*
@@ -70,9 +71,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:administrator']
     Route::get('/admin/products/orders', function(){
         return view('/admin/products/orders');
     })->name('orders');
-    Route::get('/admin/users', function(){
-        return view('/admin/users/users');
-    })->name('users');
+    // Route::get('/admin/users', function(){
+    //     return view('/admin/users/users');
+    // })->name('users');
+    Route::resource('users', UserController::class)->name('index', 'admin.users');
     // Route::resource('product-menu', MenuController::class)->name('index','product-menu');
 
 });

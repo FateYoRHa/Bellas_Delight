@@ -25,7 +25,7 @@
                                 {{ __('Products') }}
                             </x-jet-nav-link>
 
-                            <x-jet-nav-link href="{{ route('users') }}" :active="request()->routeIs('users')">
+                            <x-jet-nav-link href="{{ route('admin.users') }}" :active="request()->routeIs('admin.users')">
                                 {{ __('Users') }}
                             </x-jet-nav-link>
                         @endif
@@ -214,7 +214,7 @@
                         {{ __('Products') }}
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ route('users') }}" :active="request()->routeIs('users')">
+                    <x-jet-nav-link href="{{ route('admin.users') }}" :active="request()->routeIs('admin.users')">
                         {{ __('Users') }}
                     </x-jet-nav-link>
                 @endif

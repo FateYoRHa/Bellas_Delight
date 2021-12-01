@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -14,7 +15,19 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        //$users = DB::table('users')
+        // ->join('role_user', 'users.id', '=', 'role_user.user_id')
+        // ->leftJoin('roles', 'roles.id', '=', 'role_user.role_id')
+        // ->select('users.*', 'roles.*', 'role.*')
+        // ->get();
+        $users = DB::table('users')
+            ->join('role_user', 'users.id', '=', 'role_user.user_id')
+            ->leftJoin('roles', 'roles.id', '=', 'role_user.role_id')
+            ->select('users.*', 'roles.display_name','roles.description', 'role_user.user_id')->paginate(4);
+        // $users = DB::table('users')
+        // ->join('role_user', 'role_user.user_id', '=', 'users.id')
+        // return view('admin.users.users');
+        return view('admin.users.users', compact('users'));
     }
 
     /**
