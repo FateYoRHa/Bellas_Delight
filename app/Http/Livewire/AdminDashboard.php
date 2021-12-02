@@ -18,13 +18,13 @@ class AdminDashboard extends Component
 
         // $today_date = Orders::whereDate('created_at', Carbon::today());
         $today_date = Orders::whereYear('created_at', Carbon::now()->year)
-            ->whereMonth('created_at', Carbon::now()->month)->count();
+            ->whereMonth('created_at', Carbon::now()->month)->where('status', 'delivered')->count();
         $month1 = Orders::whereYear('created_at', Carbon::now()->year)
-            ->whereMonth('created_at', Carbon::now()->subMonth(1))->count();
+            ->whereMonth('created_at', Carbon::now()->subMonth(1))->where('status', 'delivered')->count();
         $month2 = Orders::whereYear('created_at', Carbon::now()->year)
-            ->whereMonth('created_at', Carbon::now()->subMonth(2))->count();
+            ->whereMonth('created_at', Carbon::now()->subMonth(2))->where('status', 'delivered')->count();
         $month3 = Orders::whereYear('created_at', Carbon::now()->year)
-            ->whereMonth('created_at', Carbon::now()->subMonth(3))->count();
+            ->whereMonth('created_at', Carbon::now()->subMonth(3))->where('status', 'delivered')->count();
         $ordersCount = array($today_date,$month1,$month2,$month3);
 
         //REVENUE
