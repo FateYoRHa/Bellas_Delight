@@ -22,8 +22,10 @@
 
         <!-- Scripts -->
         <script src="js/jquery-3.6.0.js"></script>
+
         <script src="js/bootstrap.js"></script>
         <script src="js/sweetalert.min.js"></script>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
