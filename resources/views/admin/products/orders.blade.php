@@ -15,7 +15,7 @@
                             <th scope="col">Phone Number</th>
                             <th scope="col">Address</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Products Ordered</th>
+                            <th scope="col">Products Ordered|Quantity</th>
                             <th scope="col">Total</th>
                             <th scope="col">Payment Method</th>
                             <th scope="col">Status</th>
@@ -25,12 +25,23 @@
                     <tbody>
                         @foreach ($orders as $order)
                             <tr>
-                                <td>{{ $order->order_id }}</td>
+                                <td>{{ $order->id }}</td>
                                 <td>{{ $order->first_name }} {{ $order->last_name }}</td>
                                 <td>{{ $order->phone_number }}</td>
                                 <td>{{ $order->address }}</td>
                                 <td>{{ $order->email }}</td>
-                                <td>TO BE ADDED/FIXED</td>
+                                <td>
+                                    <ul>
+                                        {{-- @if ($order->id == $order->order_id)
+                                            <li>{{ $order->product_id }}|{{ $order->quantity }}</li>
+                                        @endif --}}
+                                        {{-- @foreach ($products as $product)
+                                            @if ($products->order_id == $order->id)
+                                                <li>{{ $product->product_id }}|{{ $product->quantity }}</li>
+                                            @endif
+                                        @endforeach --}}
+                                    </ul>
+                                </td>
                                 <td>{{ $order->total }}</td>
                                 <td>{{ $order->payment_method }}</td>
                                 <td>{{ $order->status }}</td>
