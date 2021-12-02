@@ -4,15 +4,16 @@
             {{ __('Products') }}
         </h2>
     </x-slot>
+    @if ($message = Session::get('message'))
+        <div class="alert alert-success" role="alert">
+            {{ $message }}
+        </div>
+    @endif
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                @if ($message = Session::get('message'))
-                    <div class="alert alert-success" role="alert">
-                        {{ $message }}
-                    </div>
-                @endif
+
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProduct">
                     Add Product
@@ -40,7 +41,8 @@
                                     <tr>
                                         <td id="lID{{ $product->id }}" hidden>{{ $product->id }}</td>
                                         <td>
-                                            <img src="{{ $product->profile_photo_path }}" alt="{{ $product->profile_photo_path }}">
+                                            <img src="{{ $product->profile_photo_path }}"
+                                                alt="{{ $product->profile_photo_path }}">
                                         </td>
                                         <td>{{ $product->productName }}</td>
                                         <td>{{ $product->category }}</td>
@@ -95,8 +97,10 @@
                                     @csrf
                                     <div class="mb-3">
                                         <div class="form-group d-flex flex-column">
-                                            <label for="profile_photo_path2" class="form-label">Product Image</label>
-                                            <input class="form-control py-3" type="file" id="profile_photo_path2" name="profile_photo_path">
+                                            <label for="profile_photo_path2" class="form-label">Product
+                                                Image</label>
+                                            <input class="form-control py-3" type="file" id="profile_photo_path2"
+                                                name="profile_photo_path">
 
                                             {{-- <p>@error('profile_photo_path') {{ $message }} @enderror</p> --}}
 
@@ -113,22 +117,26 @@
                                     <div class="mb-3">
                                         <label for="pName" class="form-label">Product Name</label>
                                         <input class="form-control" id="pName" name="productName">
-                                        @error('productName') <p class="error text-red-500 text-xs italic mt-4">{{ $message }}</p> @enderror
+                                        @error('productName') <p class="error text-red-500 text-xs italic mt-4">
+                                            {{ $message }}</p> @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="pDesc" class="form-label">Description</label>
                                         <input class="form-control" id="pDesc" name="productDesc">
-                                        @error('productDesc') <p class="error text-red-500 text-xs italic mt-4">{{ $message }}</p> @enderror
+                                        @error('productDesc') <p class="error text-red-500 text-xs italic mt-4">
+                                            {{ $message }}</p> @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="pDesc" class="form-label">Quantity</label>
                                         <input class="form-control" id="quantity" name="quantity">
-                                        @error('quantity') <p class="error text-red-500 text-xs italic mt-4">{{ $message }}</p> @enderror
+                                        @error('quantity') <p class="error text-red-500 text-xs italic mt-4">
+                                            {{ $message }}</p> @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="price" class="form-label">Price</label>
                                         <input class="form-control" id="productPrice" name="productPrice">
-                                        @error('productPrice') <p class="error text-red-500 text-xs italic mt-4">{{ $message }}</p> @enderror
+                                        @error('productPrice') <p class="error text-red-500 text-xs italic mt-4">
+                                            {{ $message }}</p> @enderror
                                     </div>
 
                                 </div>
