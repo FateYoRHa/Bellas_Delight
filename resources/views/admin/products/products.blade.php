@@ -153,8 +153,8 @@
                             <form id="productEditForm">
                                 <div class="modal-body">
                                     <div class="form-group d-flex flex-column">
-                                        <label for="profile_photo_path2" class="form-label">Product Image</label>
-                                        <input class="form-control py-3" type="file" id="profile_photo_path2" name="profile_photo_path">
+                                        {{-- <label for="profile_photo_path2" class="form-label">Product Image</label>
+                                        <input class="form-control py-3" type="file" id="profile_photo_path2" name="profile_photo_path"> --}}
 
                                         {{-- <p>@error('profile_photo_path') {{ $message }} @enderror</p> --}}
 
@@ -291,7 +291,7 @@
                 $.get("{{ route('products.index') }}/" + data_id + "/edit", function(data) {
                     console.log(data);
                     $("#id2").val(data.id);
-                    $("#profile_photo_path2").val(data.profile_photo_path);
+                    //$("#profile_photo_path2").val(data.profile_photo_path);
                     $("#category2").val(data.category);
                     $("#productName2").val(data.productName);
                     $("#quantity2").val(data.quantity);
