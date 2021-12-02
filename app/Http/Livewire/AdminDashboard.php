@@ -11,7 +11,7 @@ class AdminDashboard extends Component
 {
     public function render()
     {
-        $orders = Orders::orderBy('created_at', 'DESC')->get()->take(10);
+        $orders = Orders::orderBy('created_at', 'DESC')->where('status', 'delivered')->get()->take(10);
         $totalSales = Orders::where('status', 'delivered')->count();
         $todaySales = Orders::where('status', 'delivered')
         ->whereDate('created_at', Carbon::today())->count();
@@ -31,13 +31,15 @@ class AdminDashboard extends Component
         $totalRevenue = Orders::where('status', 'delivered')->sum('total');
         $todayRevenue = Orders::where('status', 'delivered')
         ->whereDate('created_at', Carbon::today())->sum('total');
+        $totalRevenue0 = Orders::whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)->where('status', 'delivered')->sum('total');
         $totalRevenue1 = Orders::whereYear('created_at', Carbon::now()->year)
-            ->whereMonth('created_at', Carbon::now()->subMonth(1))->sum('total');
+            ->whereMonth('created_at', Carbon::now()->subMonth(1))->where('status', 'delivered')->sum('total');
         $totalRevenue2 = Orders::whereYear('created_at', Carbon::now()->year)
-            ->whereMonth('created_at', Carbon::now()->subMonth(2))->sum('total');
+            ->whereMonth('created_at', Carbon::now()->subMonth(2))->where('status', 'delivered')->sum('total');
         $totalRevenue3 = Orders::whereYear('created_at', Carbon::now()->year)
-            ->whereMonth('created_at', Carbon::now()->subMonth(3))->sum('total');
-        $revenue = array($todayRevenue,$totalRevenue1,$totalRevenue2,$totalRevenue3);
+            ->whereMonth('created_at', Carbon::now()->subMonth(3))->where('status', 'delivered')->sum('total');
+        $revenue = array($totalRevenue0,$totalRevenue1,$totalRevenue2,$totalRevenue3);
 
         return view('livewire.admin-dashboard',[
             'orders' => $orders,

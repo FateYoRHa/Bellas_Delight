@@ -99,7 +99,7 @@
     <div class="container-fluid py-5">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title text-center">Latest Orders</h5>
+                <h5 class="card-title text-center">Delivered Orders</h5>
                 <table class="table">
                     <thead>
                         <tr>
