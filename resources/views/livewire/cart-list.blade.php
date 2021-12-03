@@ -47,7 +47,7 @@
                     @endforeach
                 </tbody>
         </table>
-        <div>
+        <div class="float-end pr-12 pt-6">
             Total: ₱{{ Cart::getTotal() }}
         </div>
         <div class="mt-5">

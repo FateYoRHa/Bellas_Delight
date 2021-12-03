@@ -51,7 +51,7 @@ class ProductController extends Controller
             'Sweet Goods',
             'Tortilla'
         );
-        $products = DB::table('products')->paginate(8);
+        $products = DB::table('products')->paginate(4);
         return view('admin.products.products', compact('products'))->with('categories', $categories);
         //return view('folder.filename', compact('variable to pass'));
 

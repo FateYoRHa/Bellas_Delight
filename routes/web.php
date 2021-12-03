@@ -72,7 +72,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:administrator']
     //     return view('/admin/products/orders');
     // })->name('orders');
     Route::get('orders',[ProductController::class, 'orders'])->name('admin.orders');
-
+    Route::get('/laratrust', function(){
+        return view('/laratrust');
+    })->name('laratrust');
     // Route::get('/admin/users', function(){
     //     return view('/admin/users/users');
     // })->name('users');

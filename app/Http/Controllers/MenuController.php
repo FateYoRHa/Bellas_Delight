@@ -169,5 +169,5 @@ class MenuController extends Controller
         \Cart::clear();
         return redirect()->route('product-menu');
     }
-    
+
 }
