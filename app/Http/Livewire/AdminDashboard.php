@@ -56,5 +56,5 @@ class AdminDashboard extends Component
             'revenue' => $revenue,
         ]);
     }
-    
+
 }
