@@ -63,6 +63,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:administrator']
     //     return view('/admin/dashboard');
     // })->name('reports');
     Route::resource('/dashboard', DashboardController::class)->name('index','admin.dashboard');
+    Route::get('/download-pdf', [DashboardController::class, 'generate'])->name('admin.generate');
+
     // Route::get('/admin/products/products', function(){
     //     return view('/admin/products/products');
     // })->name('products');
@@ -72,9 +74,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:administrator']
     //     return view('/admin/products/orders');
     // })->name('orders');
     Route::get('orders',[ProductController::class, 'orders'])->name('admin.orders');
-    Route::get('/laratrust', function(){
-        return view('/laratrust');
-    })->name('laratrust');
     // Route::get('/admin/users', function(){
     //     return view('/admin/users/users');
     // })->name('users');
@@ -82,7 +81,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:administrator']
     // Route::resource('product-menu', MenuController::class)->name('index','product-menu');
 
 });
-
+// Route::get('/dashboard',function(){
+//     $pdf = \PDF::loadView('livewire.admin-dashboard');
+//     return $pdf->download('reports.pdf');
+// })->name('generate.report');
 
 //CUSTOMER ROUTES
 Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:customer']], function(){

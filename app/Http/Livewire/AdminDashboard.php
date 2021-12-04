@@ -6,9 +6,14 @@ use Livewire\Component;
 use App\Models\Orders;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\App;
 
 class AdminDashboard extends Component
 {
+    public $pdf;
+
+
     public function render()
     {
         $orders = Orders::orderBy('created_at', 'DESC')->where('status', 'delivered')->get()->take(10);
@@ -51,4 +56,5 @@ class AdminDashboard extends Component
             'revenue' => $revenue,
         ]);
     }
+    
 }
