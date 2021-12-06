@@ -169,6 +169,7 @@ class ProductController extends Controller
         //     ->select('orders.*', 'order_items.order_id')->paginate(4);
         $orders = DB::table('users')
             ->join('orders', 'users.id', '=', 'orders.user_id')
+            ->orderBy('orders.created_at', 'DESC')
             ->select('orders.*','orders.id AS order_id' , 'users.*')
             ->paginate(8);
         // $orders = Auth::user()->orders;

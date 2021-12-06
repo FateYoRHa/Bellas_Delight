@@ -55,7 +55,7 @@
                                 <tbody>
                                     @foreach ($orders as $order)
                                         <tr>
-                                            <td>{{ $order->id }}</td>
+                                            <td>{{ $order->order_id }}</td>
                                             <td>{{ $order->firstName }} {{ $order->lastName }}</td>
                                             <td>{{ $order->total }}</td>
                                             <td>{{ $order->payment_method }}</td>

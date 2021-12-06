@@ -16,7 +16,13 @@ class AdminDashboard extends Component
 
     public function render()
     {
-        $orders = Orders::orderBy('created_at', 'DESC')->where('status', 'delivered')->get()->take(10);
+        // $orders = Orders::orderBy('created_at', 'DESC')->where('status', 'delivered')->get()->take(10);
+        $orders = DB::table('users')
+        ->join('orders', 'users.id', '=', 'orders.user_id')
+        ->orderBy('orders.created_at', 'DESC')
+        ->select('orders.*','orders.id AS order_id', 'users.*')
+        ->where('status', 'delivered')
+        ->get()->take(10);
         $totalSales = Orders::where('status', 'delivered')->count();
         $todaySales = Orders::where('status', 'delivered')
         ->whereDate('created_at', Carbon::today())->count();

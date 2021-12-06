@@ -111,6 +111,7 @@ class MenuController extends Controller
     public function orders(){
         $orders = DB::table('users')
         ->join('orders', 'users.id', '=', 'orders.user_id')
+        ->orderBy('orders.updated_at', 'DESC')
         ->select('orders.*','orders.id AS order_id', 'users.*')
         ->paginate(8);
         return view('customer.customerOrders', compact('orders'));

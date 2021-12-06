@@ -20,7 +20,8 @@ class DashboardController extends Controller
         //$orders = Orders::orderBy('created_at', 'DESC')->where('status', 'delivered')->get()->take(10);
         $orders = DB::table('users')
             ->join('orders', 'users.id', '=', 'orders.user_id')
-            ->select('orders.*', 'users.*')->orderBy('updated_at', 'DESC')
+            ->select('orders.*','orders.id AS order_id', 'users.*')
+            ->orderBy('orders.updated_at', 'DESC')
             ->where('status', 'delivered')->get()->take(10);
         $totalRevenue = Orders::where('status', 'delivered')->sum('total');
         $pdf = \PDF::loadView('admin.reports.delivered-report', compact('orders', 'totalRevenue'))->setOptions(['defaultFont' => 'sans-serif']);
