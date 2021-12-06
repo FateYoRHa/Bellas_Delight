@@ -13,11 +13,13 @@
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         {{-- ADMIN NAV/LINKS --}}
                         @if (Auth::user()->hasRole('administrator'))
-                            <x-jet-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">
+                            <x-jet-nav-link href="{{ route('admin.dashboard') }}"
+                                :active="request()->routeIs('admin.dashboard')">
                                 {{ __('Reports') }}
                             </x-jet-nav-link>
 
-                            <x-jet-nav-link href="{{ route('admin.orders') }}" :active="request()->routeIs('admin.orders')">
+                            <x-jet-nav-link href="{{ route('admin.orders') }}"
+                                :active="request()->routeIs('admin.orders')">
                                 {{ __('Orders') }}
                             </x-jet-nav-link>
 
@@ -38,10 +40,18 @@
                                 {{ __('Menu') }}
                             </x-jet-nav-link>
 
+                            <x-jet-nav-link href="{{ route('customer.orders') }}"
+                                :active="request()->routeIs('customer.orders')">
+                                {{ __('My Orders') }}
+                            </x-jet-nav-link>
+
                             <x-jet-nav-link href="{{ route('cart.list') }}" :active="request()->routeIs('cart.list')">
-                                {{ __('Cart') }}<svg width="10" height="10" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
-                                    <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
-                                  </svg><p class="text-red-500">{{ Cart::getCount() }}</p>
+                                {{ __('Cart') }}<svg width="10" height="10" fill="currentColor" class="bi bi-cart2"
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+                                </svg>
+                                <p class="text-red-500">{{ Cart::getCount() }}</p>
                             </x-jet-nav-link>
 
                         @endif
@@ -158,7 +168,7 @@
                                     @csrf
 
                                     <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                    this.closest('form').submit();">
+                                                                        this.closest('form').submit();">
                                         {{ __('Log Out') }}
                                     </x-jet-dropdown-link>
                                 </form>
@@ -207,7 +217,8 @@
                         {{ __('Orders') }}
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">
+                    <x-jet-nav-link href="{{ route('admin.dashboard') }}"
+                        :active="request()->routeIs('admin.dashboard')">
                         {{ __('Reports') }}
                     </x-jet-nav-link>
 
@@ -226,6 +237,11 @@
                     {{-- to be changed to customer.menu --}}
                     <x-jet-nav-link href="{{ route('product-menu') }}" :active="request()->routeIs('product-menu')">
                         {{ __('Menu') }}
+                    </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{ route('customer.orders') }}"
+                        :active="request()->routeIs('customer.orders')">
+                        {{ __('My Orders') }}
                     </x-jet-nav-link>
 
                     <x-jet-nav-link href="{{ route('cart.list') }}" :active="request()->routeIs('cart.list')">
@@ -270,7 +286,7 @@
                         @csrf
 
                         <x-jet-responsive-nav-link href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                    this.closest('form').submit();">
+                                                        this.closest('form').submit();">
                             {{ __('Log Out') }}
                         </x-jet-responsive-nav-link>
                     </form>

@@ -167,7 +167,10 @@ class ProductController extends Controller
         // $orders = DB::table('orders')
         //     ->join('order_items', 'orders.id', '=', 'order_items.order_id')
         //     ->select('orders.*', 'order_items.order_id')->paginate(4);
-        $orders = DB::table('orders')->paginate(4);
+        $orders = DB::table('users')
+            ->join('orders', 'users.id', '=', 'orders.user_id')
+            ->select('orders.*', 'users.*')
+            ->paginate(4);
         // $orders = Auth::user()->orders;
         // $orders->transform(function($order, $key){
         //     $order->cart = unserialize($order->cart);
@@ -178,7 +181,7 @@ class ProductController extends Controller
         //     ->select('order_items.product_id')
         //     //->where('orders.id','order_items.order_id')
         //     ->get();
-        $products = DB::table('order_items')->get();
+        //$products = DB::table('order_items')->get();
 
             // $products = DB::table('order_items')
             // ->join('orders', 'order_items.order_id', '=', 'orders.id')
@@ -187,7 +190,7 @@ class ProductController extends Controller
             // ->get();
 
         //return view('admin.products.orders',['orders' => $orders]);
-        return view('admin.products.orders',compact('orders','products'));
+        return view('admin.products.orders',compact('orders'));
     }
 
 

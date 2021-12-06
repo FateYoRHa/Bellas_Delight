@@ -94,6 +94,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:customer']], fu
 
     Route::resource('product-menu', MenuController::class)->name('index','product-menu');
 
+    Route::get('customer-orders', [MenuController::class,'orders'])->name('customer.orders');
     Route::get('cart', [MenuController::class, 'cartList'])->name('cart.list');
     Route::post('cart', [MenuController::class, 'addToCart'])->name('cart.store');
     Route::post('checkout', [MenuController::class, 'clickCheckout'])->name('cart.checkout');

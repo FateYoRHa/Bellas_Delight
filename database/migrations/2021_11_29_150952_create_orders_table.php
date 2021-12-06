@@ -19,13 +19,9 @@ class CreateOrdersTable extends Migration
             //holds serialized object
             $table->text('cart');
             $table->text('address');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('phone_number');
             $table->decimal('total',20, 2);
             $table->string('payment_method');
-            $table->string('email');
-            $table->enum('status', ['pending', 'cancelled', 'delivered', 'decline'])->default('delivered');
+            $table->enum('status', ['pending', 'cancelled', 'delivered', 'accepted', 'to recieve'])->default('pending');
             $table->timestamps();
 
 

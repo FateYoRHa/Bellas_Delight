@@ -25,7 +25,7 @@ class MenuController extends Controller
 
         if(Auth::user()){
             if(Auth::user()->hasRole('administrator')){
-                return view('admin.dashboard');
+                return redirect()->route('admin.orders');
             }
             else{
                 return view('customer.menu.menu', compact('menu'));
@@ -108,6 +108,13 @@ class MenuController extends Controller
     {
         return view('customer.cart.cart');
     }
+    public function orders(){
+        $orders = DB::table('users')
+        ->join('orders', 'users.id', '=', 'orders.user_id')
+        ->select('orders.*', 'users.*')
+        ->paginate(4);
+        return view('customer.customerOrders', compact('orders'));
+    }
 
     public function addToCart(Request $request)
     {
@@ -137,14 +144,9 @@ class MenuController extends Controller
         $order = new Orders();
         $id = auth()->user()->id;
         $order->cart = serialize($items);
-        $order->first_name = auth()->user()->firstName;
-        $order->last_name = auth()->user()->lastName;
-        $order->address = auth()->user()->address;
-        $order->phone_number = auth()->user()->contactNumber;
-        $order->email = auth()->user()->email;
         $order->payment_method = $request->input('payment_method');
         $order->total = $total;
-
+        $order->address = auth()->user()->address;
         // $order->first_name = $request->input('first_name');
         // $order->last_name = $request->input('last_name');
         // $order->address = $request->input('address');
@@ -154,17 +156,17 @@ class MenuController extends Controller
         $order->user_id = $id;
         // dd($order);
         Auth::user()->orders()->save($order);
-        $cart_item = \Cart::getContent();
+        //$cart_item = \Cart::getContent();
         //  dd($order->id);
 
-        foreach($cart_item as $item){
-            $orders = new OrderItem();
-            $orders->order_id = $order->id;
-            $orders->product_id = $item->id;
-            $orders->quantity = $item->quantity;
-            $orders->price = $item->price*$item->quantity;
-            $orders->save();
-        }
+        // foreach($cart_item as $item){
+        //     $orders = new OrderItem();
+        //     $orders->order_id = $order->id;
+        //     $orders->product_id = $item->id;
+        //     $orders->quantity = $item->quantity;
+        //     $orders->price = $item->price*$item->quantity;
+        //     $orders->save();
+        // }
         session()->flash('success', 'Order send, please wait for confirmation');
         \Cart::clear();
         return redirect()->route('product-menu');

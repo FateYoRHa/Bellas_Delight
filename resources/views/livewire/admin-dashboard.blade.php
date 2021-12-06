@@ -35,10 +35,8 @@
                         <tr>
                             <th scope="col">Order #</th>
                             <th scope="col">Customer Name</th>
-                            <th scope="col">Phone Number</th>
                             <th scope="col">Amount Due</th>
                             <th scope="col">Payment Method</th>
-                            <th scope="col">Email</th>
                             <th scope="col">Order Date</th>
                             <th scope="col">Status</th>
                         </tr>
@@ -47,11 +45,9 @@
                         @foreach ($orders as $order)
                             <tr>
                                 <td>{{ $order->id }}</td>
-                                <td>{{ $order->first_name }} {{ $order->first_name }}</td>
-                                <td>{{ $order->phone_number }}</td>
+                                <td>{{ $order->firstName }} {{ $order->lastName }}</td>
                                 <td>₱{{ $order->total }}</td>
                                 <td>{{ $order->payment_method }}</td>
-                                <td>{{ $order->email }}</td>
                                 <td>{{ $order->updated_at }}</td>
                                 <td>{{ $order->status }}</td>
                             </tr>

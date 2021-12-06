@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Orders') }}
+            {{ __('My Orders') }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -11,19 +11,17 @@
                     <thead>
                         <tr>
                             <th scope="col">Order ID</th>
-                            <th scope="col">Name</th>
                             <th scope="col">Products Ordered|Quantity</th>
                             <th scope="col">Total</th>
                             <th scope="col">Payment Method</th>
-                            <th scope="col">Status</th>
                             <th scope="col">Date Ordered</th>
+                            <th scope="col">Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($orders as $order)
                             <tr>
                                 <td>{{ $order->id }}</td>
-                                <td>{{ $order->firstName }} {{ $order->lastName }}</td>
                                 <td>
                                     <ul>
                                         {{-- @if ($order->id == $order->order_id)
@@ -38,15 +36,18 @@
                                 </td>
                                 <td>{{ $order->total }}</td>
                                 <td>{{ $order->payment_method }}</td>
-                                <td>{{ $order->status }}</td>
                                 <td>{{ $order->created_at }}</td>
                                 <td>
                                     @if ($order->status == 'pending')
-                                        <button class="btn btn-primary">Accept Order</button>
+                                        <p>{{ $order->status }}</p>
                                     @elseif ($order->status == 'to recieve')
-                                        <button class="btn btn-success">Out for delivery</button>
+                                    <button class="btn btn-success">Recieved</button>
                                     @elseif ($order->status == 'canceled')
-                                        <button class="btn btn-danger">Order Can</button>
+                                        <p>{{ $order->status }}</p>
+                                    @elseif ($order->status == 'accepted')
+                                        <p>{{ $order->status }}</p>
+                                    @else
+                                        <p>Recieved</p>
                                     @endif
                                 </td>
                             </tr>
