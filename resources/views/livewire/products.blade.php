@@ -16,6 +16,7 @@
                     <option value="productName">Product Name</option>
                     <option value="quantity">Quantity</option>
                     <option value="rating">Rating</option>
+                    <option value="created_at">Date</option>
                 </select>
             </div>
             <div class="col-md-2">

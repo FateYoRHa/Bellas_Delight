@@ -8,8 +8,8 @@ use App\Models\Product;
 class Products extends Component
 {
     public $byCategory = null;
-    public $orderBy = 'productName';
-    public $sortBy = 'asc';
+    public $orderBy = 'created_at';
+    public $sortBy = 'desc';
     public $search;
     public $perPage = 5;
     public function render()
