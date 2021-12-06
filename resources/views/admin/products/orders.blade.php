@@ -15,14 +15,15 @@
                             <th scope="col">Products Ordered|Quantity</th>
                             <th scope="col">Total</th>
                             <th scope="col">Payment Method</th>
-                            <th scope="col">Status</th>
                             <th scope="col">Date Ordered</th>
+                            <th scope="col">Date Delivered/Cancelled</th>
+                            <th scope="col">Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($orders as $order)
                             <tr>
-                                <td>{{ $order->id }}</td>
+                                <td>{{ $order->order_id }}</td>
                                 <td>{{ $order->firstName }} {{ $order->lastName }}</td>
                                 <td>
                                     <ul>
@@ -38,15 +39,31 @@
                                 </td>
                                 <td>{{ $order->total }}</td>
                                 <td>{{ $order->payment_method }}</td>
-                                <td>{{ $order->status }}</td>
                                 <td>{{ $order->created_at }}</td>
                                 <td>
+                                    @if($order->status == 'delivered')
+                                        {{ $order->updated_at }}
+                                    @endif
+                                    @if($order->status == 'cancelled')
+                                        {{ $order->updated_at }}
+                                    @endif
+                                </td>
+                                <td>
                                     @if ($order->status == 'pending')
-                                        <button class="btn btn-primary">Accept Order</button>
+                                        <a href="{{ route('update.order', $order->order_id) }}"
+                                            class="btn btn-primary">
+                                            <button>Accept Order</button>
+                                        </a>
+                                    @elseif ($order->status == 'accepted')
+                                        <a href="{{ route('update.order', $order->order_id) }}" class="btn btn-secondary">
+                                            <button>Deliver</button>
+                                        </a>
                                     @elseif ($order->status == 'to recieve')
-                                        <button class="btn btn-success">Out for delivery</button>
-                                    @elseif ($order->status == 'canceled')
-                                        <button class="btn btn-danger">Order Can</button>
+                                        <p class="text-primary">Out for Delivery</p>
+                                    @elseif ($order->status == 'delivered')
+                                        <p class="text-success">Order Delivered</p>
+                                    @else
+                                        <p class="text-danger">Order Canceled</p>
                                     @endif
                                 </td>
                             </tr>

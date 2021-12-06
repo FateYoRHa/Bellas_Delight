@@ -15,13 +15,14 @@
                             <th scope="col">Total</th>
                             <th scope="col">Payment Method</th>
                             <th scope="col">Date Ordered</th>
+                            <th scope="col">Date Delivered/Cancelled</th>
                             <th scope="col">Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($orders as $order)
                             <tr>
-                                <td>{{ $order->id }}</td>
+                                <td>{{ $order->order_id }}</td>
                                 <td>
                                     <ul>
                                         {{-- @if ($order->id == $order->order_id)
@@ -38,16 +39,35 @@
                                 <td>{{ $order->payment_method }}</td>
                                 <td>{{ $order->created_at }}</td>
                                 <td>
+                                    @if ($order->status == 'delivered')
+                                        {{ $order->updated_at }}
+                                    @elseif($order->status == 'cancelled')
+                                        {{ $order->updated_at }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($order->status == 'delivered')
+                                        <p class="text-success">Recieved</p>
+                                    @elseif ($order->status == 'cancelled')
+                                        <p class="text-danger">Cancelled</p>
+                                    @endif
+                                </td>
+                                <td>
                                     @if ($order->status == 'pending')
-                                        <p>{{ $order->status }}</p>
+                                        <a href="{{ route('update.customer.order', $order->order_id) }}"
+                                            class="btn btn-warning">
+                                            <button>Cancel Order</button>
+                                        </a>
                                     @elseif ($order->status == 'to recieve')
-                                    <button class="btn btn-success">Recieved</button>
-                                    @elseif ($order->status == 'canceled')
-                                        <p>{{ $order->status }}</p>
+                                        <a href="{{ route('update.customer.order', $order->order_id) }}"
+                                            class="btn btn-success">
+                                            <button>Recieved</button>
+                                        </a>
                                     @elseif ($order->status == 'accepted')
-                                        <p>{{ $order->status }}</p>
-                                    @else
-                                        <p>Recieved</p>
+                                        <a href="{{ route('update.customer.order', $order->id) }}"
+                                            class="btn btn-warning">
+                                            <button>Cancel Order</button>
+                                        </a>
                                     @endif
                                 </td>
                             </tr>

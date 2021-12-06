@@ -169,8 +169,8 @@ class ProductController extends Controller
         //     ->select('orders.*', 'order_items.order_id')->paginate(4);
         $orders = DB::table('users')
             ->join('orders', 'users.id', '=', 'orders.user_id')
-            ->select('orders.*', 'users.*')
-            ->paginate(4);
+            ->select('orders.*','orders.id AS order_id' , 'users.*')
+            ->paginate(8);
         // $orders = Auth::user()->orders;
         // $orders->transform(function($order, $key){
         //     $order->cart = unserialize($order->cart);
@@ -191,6 +191,66 @@ class ProductController extends Controller
 
         //return view('admin.products.orders',['orders' => $orders]);
         return view('admin.products.orders',compact('orders'));
+    }
+
+    //UPDATE ORDER STATUS
+    public function updateOrder($id){
+        //dd($id);
+        $order = DB::table('orders')->select('orders.*')->where('orders.id', $id)->first();
+        //$order = DB::table('orders')->where('orders.id', $id)->first();
+        //dd($order->status);
+        //'pending', 'cancelled', 'delivered', 'accepted', 'to recieve'
+
+        if($order->status == 'pending'){
+            //DB::table('orders')->first()->update(['status' => 'accepted']);
+            DB::table('orders')
+            ->where('status', 'pending')
+            ->update(['status' => 'accepted']);
+
+        }
+        elseif($order->status == 'accepted'){
+            //DB::table('orders')->first()->update(['status' => 'accepted']);
+            DB::table('orders')
+            ->where('status', 'accepted')
+            ->update(['status' => 'to recieve']);
+
+        }
+
+        return redirect()->route('admin.orders');
+
+    }
+
+    //UPDATE ORDER STATUS
+    public function updateCustomerOrder($id){
+        //dd($id);
+        $order = DB::table('orders')->select('orders.*')->where('orders.id', $id)->first();
+        //$order = DB::table('orders')->where('orders.id', $id)->first();
+        //dd($order->status);
+        //'pending', 'cancelled', 'delivered', 'accepted', 'to recieve'
+
+        if($order->status == 'to recieve'){
+            //DB::table('orders')->first()->update(['status' => 'accepted']);
+            DB::table('orders')
+            ->where('status', 'to recieve')
+            ->update(['status' => 'delivered']);
+
+        }
+        elseif($order->status == 'accepted'){
+            //DB::table('orders')->first()->update(['status' => 'accepted']);
+            DB::table('orders')
+            ->where('status', 'accepted')
+            ->update(['status' => 'cancelled']);
+
+        }
+        else{
+            DB::table('orders')
+            ->where('status', 'pending')
+            ->update(['status' => 'cancelled']);
+
+        }
+
+        return redirect()->route('customer.orders');
+
     }
 
 

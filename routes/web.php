@@ -55,7 +55,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
 
 
 });
-
+Route::get('update.order/{order_id}',[ProductController::class, 'updateOrder'])->name('update.order');
+Route::get('update.customer.order/{order_id}',[ProductController::class, 'updateCustomerOrder'])->name('update.customer.order');
 //ADMIN ROUTES
 Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:administrator']], function(){
 
