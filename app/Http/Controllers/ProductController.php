@@ -41,18 +41,8 @@ class ProductController extends Controller
     public function index()
     {
         //
-        $categories = array(
-            'Bread',
-            'Cookie',
-            'Dessert',
-            'Muffin',
-            'Pizza',
-            'Snack Cakes',
-            'Sweet Goods',
-            'Tortilla'
-        );
-        $products = DB::table('products')->paginate(4);
-        return view('admin.products.products', compact('products'))->with('categories', $categories);
+
+        return view('admin.products.products');
         //return view('folder.filename', compact('variable to pass'));
 
     }

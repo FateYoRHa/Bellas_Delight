@@ -21,18 +21,17 @@ class MenuController extends Controller
     public function index()
     {
         //
-        $menu = DB::table('products')->paginate(8);
 
         if(Auth::user()){
             if(Auth::user()->hasRole('administrator')){
                 return redirect()->route('admin.orders');
             }
             else{
-                return view('customer.menu.menu', compact('menu'));
+                return view('customer.menu.menu');
             }
         }
         else{
-            return view('customer.menu.menu', compact('menu'));
+            return view('customer.menu.menu');
         }
 
     }

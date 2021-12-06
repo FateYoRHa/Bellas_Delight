@@ -23,4 +23,12 @@ class Product extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
+
+    public function scopeSearch($query, $term){
+        $term = "%$term%";
+        $query->where(function($query) use ($term){
+            $query->where('productName', 'like', $term)
+            ->orWhere('category', 'like', $term);
+        });
+    }
 }
