@@ -187,15 +187,16 @@ class ProductController extends Controller
     //UPDATE ORDER STATUS
     public function updateOrder($id){
         //dd($id);
-        $order = DB::table('orders')->select('orders.*')->where('orders.id', $id)->first();
+        $order = DB::table('orders')->select('orders.status')->where('orders.id', $id)->first();
         //$order = DB::table('orders')->where('orders.id', $id)->first();
-        //dd($order->status);
+        //dd($order);
         //'pending', 'cancelled', 'delivered', 'accepted', 'to recieve'
 
         if($order->status == 'pending'){
             //DB::table('orders')->first()->update(['status' => 'accepted']);
             DB::table('orders')
             ->where('status', 'pending')
+            ->where('orders.id', $id)
             ->update(['status' => 'accepted']);
 
         }
@@ -203,6 +204,7 @@ class ProductController extends Controller
             //DB::table('orders')->first()->update(['status' => 'accepted']);
             DB::table('orders')
             ->where('status', 'accepted')
+            ->where('orders.id', $id)
             ->update(['status' => 'to recieve']);
 
         }
@@ -223,6 +225,7 @@ class ProductController extends Controller
             //DB::table('orders')->first()->update(['status' => 'accepted']);
             DB::table('orders')
             ->where('status', 'to recieve')
+            ->where('orders.id', $id)
             ->update(['status' => 'delivered']);
 
         }
@@ -230,12 +233,14 @@ class ProductController extends Controller
             //DB::table('orders')->first()->update(['status' => 'accepted']);
             DB::table('orders')
             ->where('status', 'accepted')
+            ->where('orders.id', $id)
             ->update(['status' => 'cancelled']);
 
         }
         else{
             DB::table('orders')
             ->where('status', 'pending')
+            ->where('orders.id', $id)
             ->update(['status' => 'cancelled']);
 
         }

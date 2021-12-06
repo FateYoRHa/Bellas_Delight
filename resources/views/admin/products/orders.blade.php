@@ -63,7 +63,7 @@
                                     @elseif ($order->status == 'delivered')
                                         <p class="text-success">Order Delivered</p>
                                     @else
-                                        <p class="text-danger">Order Canceled</p>
+                                        <p class="text-danger">Order Cancelled</p>
                                     @endif
                                 </td>
                             </tr>
