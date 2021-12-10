@@ -50,6 +50,8 @@
                                         <p class="text-success">Recieved</p>
                                     @elseif ($order->status == 'cancelled')
                                         <p class="text-danger">Cancelled</p>
+                                    @else
+                                        <p class="text-primary">{{ $order->status }}</p>
                                     @endif
                                 </td>
                                 <td>
@@ -63,11 +65,12 @@
                                             class="btn btn-success">
                                             <button>Recieved</button>
                                         </a>
-                                    @elseif ($order->status == 'accepted')
-                                        <a href="{{ route('update.customer.order', $order->id) }}"
+                                    {{-- @elseif ($order->status == 'accepted')
+                                        {{-- <a href="{{ route('update.customer.order', $order->id) }}"
                                             class="btn btn-warning">
                                             <button>Cancel Order</button>
-                                        </a>
+                                        </a> --}}
+
                                     @endif
                                 </td>
                             </tr>

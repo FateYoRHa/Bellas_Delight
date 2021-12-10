@@ -24,7 +24,8 @@ class DashboardController extends Controller
             ->orderBy('orders.updated_at', 'DESC')
             ->where('status', 'delivered')->get()->take(10);
         $totalRevenue = Orders::where('status', 'delivered')->sum('total');
-        $pdf = \PDF::loadView('admin.reports.delivered-report', compact('orders', 'totalRevenue'))->setOptions(['defaultFont' => 'sans-serif']);
+        $dateToday = Carbon::now();
+        $pdf = \PDF::loadView('admin.reports.delivered-report', compact('orders', 'totalRevenue','dateToday'))->setOptions(['defaultFont' => 'sans-serif']);
 
             //dd($pdf);
         return $pdf->download("bella's Delights Orders Report.pdf");
