@@ -5,9 +5,12 @@
         </h2>
     </x-slot>
     @if ($message = Session::get('message'))
-        <div class="alert alert-success" role="alert">
+        {{-- <div class="alert alert-success" role="alert">
             {{ $message }}
-        </div>
+        </div> --}}<div class="alert alert-primary alert-dismissible fade show" role="alert">
+  <strong>{{ $message }}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
     @endif
 
     <div class="py-12">

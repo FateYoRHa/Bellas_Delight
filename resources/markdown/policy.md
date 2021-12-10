@@ -1,7 +1,8 @@
 # Privacy Policy
 
-Privacy Policy: This is an example of privacy and policy featuring Lorem Ipsum: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
+1. This privacy policy explains how Aliza Alipit (owner of Bella's Delights) and this Website (BromaBakery.com) uses and protects any information that you give while using BromaBakery.com. Here at Broma Bakery we strive to provide meaningful content that we think will be valuable to you, our readers. We also believe in transparency, which is why you’ll find all the details about what information we collect, how compensation works for the Website, and other Terms of Use that apply to you.
 
-Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. SANA PUMASA KAMI.
+2. By accessing and browsing this Website, you agree to be bound by these Terms of Use and Privacy Policy. In the event of any violation of these Terms of Use, Privacy Policy, or any applicable laws, we intend to fully cooperate with any law enforcement officials or agencies in the investigation of such violations.This policy may change without notice. You should periodically check this page to stay up to date with the latest policy. This policy is effective December 08, 2021.
 
-Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+3. While these practices may be changed, any changes will be posted and changes will only apply to activities and information on a going forward, rather than a retroactive basis. You are encouraged to review the privacy policy whenever you visit the site to make sure that you understand how any personal information you provide will be used.
+

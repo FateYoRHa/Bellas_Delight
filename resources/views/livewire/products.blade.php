@@ -42,7 +42,7 @@
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
 
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProduct">
+            <button type="button" class="btn btn-primary m-4" data-bs-toggle="modal" data-bs-target="#addProduct">
                 Add Product
             </button>
             <div class="container-fluid">
@@ -68,8 +68,10 @@
                                 <tr>
                                     <td id="lID{{ $product->id }}" hidden>{{ $product->id }}</td>
                                     <td>
-                                        <img src="{{ $product->profile_photo_path }}"
-                                            alt="{{ $product->profile_photo_path }}">
+                                        {{-- <img src="{{ $product->profile_photo_path }}"
+                                            alt="{{ $product->profile_photo_path }}"> --}}
+                                            <img src="https://images-gmi-pmc.edge-generalmills.com/da2abda1-fae1-4782-b65f-93868ca5bd40.jpg"
+                                            class="mx-auto rounded-circle card-img-top pImg" alt="...">
                                     </td>
                                     <td>{{ $product->productName }}</td>
                                     <td>{{ $product->category }}</td>
@@ -81,7 +83,7 @@
                                         <div class="btn-group" role="group">
                                             <div class=" me-md-3">
                                                 <a id="btnEditModal" data_id="{{ $product->id }}"
-                                                    role="button"><button class="btn btn-success">Edit</button></a>
+                                                    role="button"><button class="btn btn-warning">Edit</button></a>
 
                                             </div>
                                             <div class="ms-md-3">
@@ -143,32 +145,32 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="pName" class="form-label">Product Name</label>
-                                    <input class="form-control" id="pName" name="productName">
+                                    <input class="form-control" id="pName" name="productName" maxlength="50" minlength="3" required>
                                     @error('productName') <p class="error text-red-500 text-xs italic mt-4">
                                         {{ $message }}</p> @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="pDesc" class="form-label">Description</label>
-                                    <input class="form-control" id="pDesc" name="productDesc">
+                                    <input class="form-control" id="pDesc" name="productDesc" maxlength="100" minlength="3" required>
                                     @error('productDesc') <p class="error text-red-500 text-xs italic mt-4">
                                         {{ $message }}</p> @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="pDesc" class="form-label">Quantity</label>
-                                    <input class="form-control" id="quantity" name="quantity">
+                                    <input type="number" class="form-control" id="quantity" name="quantity" min="1" onkeypress="return event.charCode >= 48" required>
                                     @error('quantity') <p class="error text-red-500 text-xs italic mt-4">
                                         {{ $message }}</p> @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="price" class="form-label">Price</label>
-                                    <input class="form-control" id="productPrice" name="productPrice">
+                                    <input type="number" class="form-control" id="productPrice" name="productPrice" min="0" required>
                                     @error('productPrice') <p class="error text-red-500 text-xs italic mt-4">
                                         {{ $message }}</p> @enderror
                                 </div>
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-warning m-2" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Add Product</button>
                             </div>
                         </form>
@@ -207,25 +209,25 @@
                                 </select>
                                 <div class="mb-3">
                                     <label for="pName" class="form-label">Product Name</label>
-                                    <input class="form-control" id="productName2" name="productName">
+                                    <input class="form-control" id="productName2" name="productName" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="pDesc" class="form-label">Quantity</label>
-                                    <input class="form-control" id="quantity2" name="quantity">
+                                    <input type="number" class="form-control" id="quantity2" name="quantity" min="0" onkeypress="return event.charCode >= 48" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="pDesc" class="form-label">Description</label>
-                                    <input class="form-control" id="productDesc2" name="productDesc">
+                                    <input class="form-control" id="productDesc2" name="productDesc" maxlength="100" minlength="3" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="price" class="form-label">Price</label>
-                                    <input class="form-control" id="productPrice2" name="productPrice">
+                                    <input class="form-control" id="productPrice2" name="productPrice" minlength="1" maxlength="4" required>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" id="btnEditProduct" class="btn btn-success">Edit
+                                <button type="button" class="btn btn-warning m-2" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" id="btnEditProduct" class="btn btn-primary">Edit
                                     Product</button>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                             </div>
 
                         </form>

@@ -11,7 +11,7 @@
                 <x-jet-label for="firstName" value="{{ __('First Name') }}" />
                 <x-jet-input id="firstName" class="block mt-1 w-full @error('firstName') border-red-500 @enderror"
                     type="text" name="firstName" :value="old('firstName')" autofocus
-                    autocomplete="firstName" />
+                    autocomplete="firstName" maxlength="26" minlength="2"  />
                 @error('firstName') <p class="error text-red-500 text-xs italic mt-4">{{ $message }}</p> @enderror
 
             </div>
@@ -19,7 +19,7 @@
             <div>
                 <x-jet-label for="lastName" value="{{ __('Last Name') }}" />
                 <x-jet-input id="lastName" class="block mt-1 w-full @error('lastName') border-red-500 @enderror"
-                    type="text" name="lastName" :value="old('lastName')" autofocus autocomplete="lastName" />
+                    type="text" name="lastName" :value="old('lastName')" autofocus autocomplete="lastName" maxlength="26" minlength="2"/>
                 @error('lastName') <p class="error text-red-500 text-xs italic mt-4">{{ $message }}</p> @enderror
             </div>
 
@@ -27,32 +27,32 @@
             <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
                 <x-jet-input id="email" class="block mt-1 w-full @error('email') border-red-500 @enderror" type="email"
-                    name="email" :value="old('email')" />
+                    name="email" :value="old('email')" maxlength="50" />
                 @error('email') <p class="error text-red-500 text-xs italic mt-4">{{ $message }}</p> @enderror
             </div>
             {{-- ADDRESS --}}
             <div>
                 <x-jet-label for="address" value="{{ __('Address') }}" />
                 <x-jet-input id="address" class="block mt-1 w-full @error('address') border-red-500 @enderror"
-                    type="text" name="address" :value="old('address')" autofocus autocomplete="address" />
+                    type="text" name="address" :value="old('address')" autofocus autocomplete="address" placeholder="House No./Province/City/Municipality/Barangay"/>
                 @error('address') <p class="error text-red-500 text-xs italic mt-4">{{ $message }}</p> @enderror
             </div>
             {{-- Contact Number --}}
             <div>
                 <x-jet-label for="contactNumber" value="{{ __('Contact Number') }}" />
-                <x-jet-input id="contactNumber" class="block mt-1 w-full @error('contactNumber') border-red-500 @enderror" type="text" name="contactNumber" :value="old('contactNumber')" autofocus autocomplete="contactNumber" />
+                <x-jet-input id="contactNumber" class="block mt-1 w-full @error('contactNumber') border-red-500 @enderror" type="text" name="contactNumber" :value="old('contactNumber')" autofocus autocomplete="contactNumber" maxlength="11" minlength="11"/>
                 @error('contactNumber') <p class="error text-red-500 text-xs italic mt-4">{{ $message }}</p> @enderror
             </div>
 
             <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" autocomplete="new-password" />
+                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" autocomplete="new-password" minlength="8" maxlength="16"/>
                 @error('password') <p class="error text-red-500 text-xs italic mt-4">{{ $message }}</p> @enderror
             </div>
 
             <div class="mt-4">
                 <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" autocomplete="new-password" />
+                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" autocomplete="new-password" minlength="8" maxlength="16"/>
                 @error('password_confirmation') <p class="error text-red-500 text-xs italic mt-4">{{ $message }}</p> @enderror
             </div>
 

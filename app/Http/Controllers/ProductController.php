@@ -34,7 +34,7 @@ class ProductController extends Controller
         'category' => 'required',
         'productDesc' => 'required',
         'productPrice' => 'required|integer',
-        'quantity' => 'required|integer',
+        'quantity' => 'required|integer|min:1',
         'profile_photo_path' => 'image|max:5000',
     ];
 

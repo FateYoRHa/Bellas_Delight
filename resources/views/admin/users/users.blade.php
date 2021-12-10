@@ -27,7 +27,9 @@
                         <td>{{ $user->display_name }}</td>
                         <td>{{ $user->description }}</td>
                         <td>{{ $user->created_at }}</td>
-                        <td><button class="btn btn-success">Change Role</button></td>
+                        <form action="http://127.0.0.1:8000/laratrust">
+                          <td><button class="btn btn-warning">Change Role</button></td>
+                        </form>
                       </tr>
                       @endforeach
                     </tbody>

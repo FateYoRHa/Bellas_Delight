@@ -1,8 +1,12 @@
 <div>
     @if ($message = Session::get('success'))
-        <div class="p-4 mb-3 bg-green-400 rounded">
+        {{-- <div class="p-4 mb-3 bg-green-400 rounded">
             <p class="text-green-800">{{ $message }}</p>
-        </div>
+        </div> --}}
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>{{ $message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
     @endif
     @if (Cart::getCount() > 0)
     <h3 class="text-3xl text-bold">
@@ -26,7 +30,9 @@
                     @foreach ($cartItems as $item)
                         <tr>
                             <td>
-                                <img src="{{ $item['attributes']['image'] }}" class="w-20 rounded" alt="Thumbnail">
+                                {{-- <img src="{{ $item['attributes']['image'] }}" class="w-20 rounded" alt="Thumbnail"> --}}
+                                <img src="https://images-gmi-pmc.edge-generalmills.com/da2abda1-fae1-4782-b65f-93868ca5bd40.jpg"
+                                    class="mx-auto rounded-circle card-img-top pImg" alt="..." style="height: 50px">
                             </td>
                             <td>
                                 {{ $item['name'] }}
@@ -41,10 +47,12 @@
                             </td>
                             <td class="text-right md:table-cell">
                                 <button class="px-2 py-2 bg-red-500"
-                                    wire:click.prevent="removeCart('{{ $item['id'] }}')"><svg width="15" height="15" fill="currentColor" class="bi bi-trash" viewBox="0 0 15 15">
-                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                    wire:click.prevent="removeCart('{{ $item['id'] }}')"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                                       </svg></button>
+
+                                     
                             </td>
                         </tr>
 
@@ -55,8 +63,8 @@
             Total: ₱{{ Cart::getTotal() }}
         </div>
         <div class="mt-5">
-            <button class="px-6 py-2 text-red-800 bg-red-300" wire:click.prevent="clearAllCart">Remove All Cart</button>
-            <a href="checkout" class="btn float-end"><button class="px-6 py-2 text-black-800 bg-green-300">Check
+            <button class="px-6 py-2 btn btn-primary" wire:click.prevent="clearAllCart">Remove All Orders</button>
+            <a href="checkout" class="btn float-end"><button class="px-6 py-2 btn btn-warning">Check
                     Out</button></a>
         </div>
 
@@ -65,7 +73,7 @@
     <h3 class="text-3xl text-bold text-center">
         Total of {{ Cart::getCount() }} Item/s in Cart
     </h3>
-        <a href="{{ route('product-menu') }}" class="btn btn-success px-6 py-2 text-black-800"><button>Back to
+        <a href="{{ route('product-menu') }}" class="btn btn-warning px-6 py-2 text-black-800"><button>Back to
                 Shopping</button></a>
         @endif
     </div>

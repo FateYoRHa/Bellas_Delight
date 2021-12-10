@@ -38,24 +38,28 @@
                 <input class="form-control" type="text" wire:model.debounce.350ms="search">
             </div>
         </div>
-        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+        <div class="bg-warning overflow-hidden shadow-xl sm:rounded-lg">
             <div class="row mx-auto pt-5">
                 @if ($message = Session::get('success'))
-                    <div class="p-4 mb-3 bg-green-400 rounded">
-                        <p class="text-green-800">{{ $message }}</p>
-                    </div>
+                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                    <strong>{{ $message }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
                 @endif
                 @foreach ($menu as $product)
                     @if ($product->quantity > 0)
                         <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 px-2 py-2">
-                            <div class="card pcard">
+                            <div class="card border border-primary">
                                 <!-- {{-- Pa ayos nlng css :> --}} -->
-                                <img src="{{ $product->profile_photo_path }}"
+                                {{-- <img src="{{ $product->profile_photo_path }}"
+                                    class="mx-auto rounded-circle card-img-top pImg" alt="..."> --}}
+                                <img src="https://images-gmi-pmc.edge-generalmills.com/da2abda1-fae1-4782-b65f-93868ca5bd40.jpg"
                                     class="mx-auto rounded-circle card-img-top pImg" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title">
+                                    <h5 class="card-header text-center">{{ $product->productName }}</h5>
+                                    {{-- <h5 class="card-title">
                                         <p class="text-center text-md">{{ $product->productName }}</p>
-                                    </h5>
+                                    </h5> --}}
                                     <p id="lID{{ $product->id }}"></p>
                                     <p>{{ $product->category }}</p>
                                     <p class="card-text">{{ $product->productDesc }}</p>
@@ -76,7 +80,7 @@
                                                 <input type="hidden" value="{{ $product->profile_photo_path }}"
                                                     name="image">
                                                 <input type="hidden" value="1" name="quantity">
-                                                <button class="px-4 py-2 text-black bg-blue-800 rounded">Add To
+                                                <button class="px-4 py-2 text-black btn btn-primary rounded">Add To
                                                     Cart</button>
                                             </form>
                                         </div>
@@ -88,7 +92,9 @@
                         <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
                             <div class="card border-red bg-secondary">
                                 <!-- {{-- Pa ayos nlng css :> --}} -->
-                                <img src="{{ $product->profile_photo_path }}"
+                                {{-- <img src="{{ $product->profile_photo_path }}"
+                                    class="mx-auto rounded-circle card-img-top pImg" alt="..."> --}}
+                                    <img src="https://images-gmi-pmc.edge-generalmills.com/da2abda1-fae1-4782-b65f-93868ca5bd40.jpg"
                                     class="mx-auto rounded-circle card-img-top pImg" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">

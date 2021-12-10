@@ -30,11 +30,13 @@
 <body>
 
     <div class="py-12">
+        <center>
         <header>
+            {{-- <img src="storage\images\logo.png" alt="asdasd"> --}}
             <h2 class="text-center">Bella's Delights</h2>
             <h3 class="text-center">Delivery Report</h3>
-
         </header>
+    </center>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="container-fluid py-5">
