@@ -11,7 +11,6 @@
                     <thead>
                         <tr>
                             <th scope="col">Order ID</th>
-                            <th scope="col">Products Ordered|Quantity</th>
                             <th scope="col">Total</th>
                             <th scope="col">Payment Method</th>
                             <th scope="col">Date Ordered</th>
@@ -23,18 +22,6 @@
                         @foreach ($orders as $order)
                             <tr>
                                 <td>{{ $order->order_id }}</td>
-                                <td>
-                                    <ul>
-                                        {{-- @if ($order->id == $order->order_id)
-                                            <li>{{ $order->product_id }}|{{ $order->quantity }}</li>
-                                        @endif --}}
-                                        {{-- @foreach ($products as $product)
-                                            @if ($products->order_id == $order->id)
-                                                <li>{{ $product->product_id }}|{{ $product->quantity }}</li>
-                                            @endif
-                                        @endforeach --}}
-                                    </ul>
-                                </td>
                                 <td>{{ $order->total }}</td>
                                 <td>{{ $order->payment_method }}</td>
                                 <td>{{ $order->created_at }}</td>
@@ -50,6 +37,8 @@
                                         <p class="text-success">Recieved</p>
                                     @elseif ($order->status == 'cancelled')
                                         <p class="text-danger">Cancelled</p>
+                                    @else
+                                        <p>{{ $order->status }}</p>
                                     @endif
                                 </td>
                                 <td>

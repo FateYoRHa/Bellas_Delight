@@ -60,7 +60,6 @@
                     Out</button></a>
         </div>
 
-
     @else
     <h3 class="text-3xl text-bold text-center">
         Total of {{ Cart::getCount() }} Item/s in Cart

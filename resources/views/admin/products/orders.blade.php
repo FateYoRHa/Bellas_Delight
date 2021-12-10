@@ -12,7 +12,6 @@
                         <tr>
                             <th scope="col">Order ID</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Products Ordered|Quantity</th>
                             <th scope="col">Total</th>
                             <th scope="col">Payment Method</th>
                             <th scope="col">Date Ordered</th>
@@ -25,18 +24,6 @@
                             <tr>
                                 <td>{{ $order->order_id }}</td>
                                 <td>{{ $order->firstName }} {{ $order->lastName }}</td>
-                                <td>
-                                    <ul>
-                                        {{-- @if ($order->id == $order->order_id)
-                                            <li>{{ $order->product_id }}|{{ $order->quantity }}</li>
-                                        @endif --}}
-                                        {{-- @foreach ($products as $product)
-                                            @if ($products->order_id == $order->id)
-                                                <li>{{ $product->product_id }}|{{ $product->quantity }}</li>
-                                            @endif
-                                        @endforeach --}}
-                                    </ul>
-                                </td>
                                 <td>{{ $order->total }}</td>
                                 <td>{{ $order->payment_method }}</td>
                                 <td>{{ $order->created_at }}</td>

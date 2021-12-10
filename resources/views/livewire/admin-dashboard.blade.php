@@ -1,6 +1,6 @@
 @include('dependencies.generate-scripts')
 <div>
-    <a href="{{ route('admin.generate') }}" class="btn-success"><button>Generate Report</button></a>
+
     <div class="container-fluid py-5 row">
         <div class="card col-md-6">
             <div class="card-body">
@@ -27,6 +27,7 @@
         </div>
     </div>
     <div class="container-fluid py-5">
+        <a href="{{ route('admin.generate') }}" class="btn btn-secondary"><button>Generate Report</button></a>
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title text-center">Delivered Orders</h5>

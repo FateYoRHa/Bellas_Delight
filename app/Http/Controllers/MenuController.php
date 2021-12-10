@@ -112,6 +112,7 @@ class MenuController extends Controller
         ->join('orders', 'users.id', '=', 'orders.user_id')
         ->orderBy('orders.updated_at', 'DESC')
         ->select('orders.*','orders.id AS order_id', 'users.*')
+        ->where('orders.user_id', auth()->user()->id)
         ->paginate(8);
         return view('customer.customerOrders', compact('orders'));
     }

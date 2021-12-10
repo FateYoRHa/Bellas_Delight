@@ -10,7 +10,7 @@ class Menu extends Component
     public $orderBy = 'productName';
     public $sortBy = 'asc';
     public $search;
-    public $perPage = 10;
+    public $perPage = 5;
     public function render()
     {
         $categories = array(

@@ -16,6 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
+            //$table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
             //holds serialized object
             $table->text('cart');
             $table->text('address');
